@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Discovery</h1>
+
+{% for song in songs %}
+<p><a href="#">{{song.title}}</a>
+{% else %}
+<b>There are no songsk</b>
+{% endfor %}
+
+</body>
+</html>
