@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
                             backref=db.backref('users', lazy='dynamic'))
     
     def __repr__(self):
-        return "User {} : {}".format(self.id, self.email)
+        return "User {} : {} : {}".format(self.id, self.email, self.password)
     # purchases = db.relationship("Purchase",
     #                 primaryjoin="and_(User.id==Purchase.buyer_id, "
     #                     "True)")
@@ -51,7 +51,7 @@ class Song(db.Model):
 
 
 class Purchase(db.Model):
-    __tablename__ = 'purchases'
+    __tablename__ = 'purchase'
     id = db.Column(db.Integer, primary_key=True)
 
     buyer_id = db.Column(db.Integer(), db.ForeignKey('user.id'),  nullable=False)
