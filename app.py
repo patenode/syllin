@@ -30,3 +30,4 @@ application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://'+ DATABASES['defa
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 application.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
 application.config['SECURITY_PASSWORD_SALT'] = 'TODO-Figure_out_if_I_should_change_this'
+application.config['SECRET_KEY'] = 'CanUGuessMe_ThisValueDOesntMatter'
