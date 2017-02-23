@@ -1,0 +1,13 @@
+{% extends 'nav.html' %}
+{% import 'macros.html' as macros %}
+{% block body %}
+    <h2>{{ user.email }}'s Profile</h2>
+    {{ lipsum(3) }}
+    Albums:
+    <ul>
+        {% for album in user.albums %}
+            <li>{{ macros.album_link(album.id, album.title) }}</li>
+        {% endfor %}
+    </ul>
+    {{ macros.library_link(user.id, "See my library") }}
+{% endblock %}

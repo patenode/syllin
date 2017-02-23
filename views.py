@@ -1,51 +1,28 @@
-from models import User, Song, Album, Role, Purchase
 from flask import render_template
+
+import album
+import song
+import user
 from app import application
+from user import current_user
+from models import Song
 
-@application.route('/jeff')
-def home():
-    q = "Hello "
-
-    for user in User.query.all():
-        q = q + user.email
-    return q
-
-@application.route('/purchases')
-def purchases():
-    q = ""
-    para = "<p>{}</p>"
-    for purchase in Purchase.query.all():
-        q = q + para.format(str(purchase))
-
-    return q
-
-@application.route('/songs')
-def song():
-    q = "Songs "
-
-    para = "<p>{}</p>"
-    for song in Song.query.all():
-        q = q +"  " + para.format(str(song))
-    return q
-
-@application.route('/users')
-def users():
-    q = "Users "
-
-    para = "<p>{}</p>"
-    for user in User.query.all():
-        q = q +"  " + para.format(str(user))
-    return q
+application.register_blueprint(user.views)
+application.register_blueprint(album.views)
+application.register_blueprint(song.views)
 
 
-@application.route('/users/<user_id>')
-def display_user(user_id):
-    user = User.query.get(user_id)
+@application.route('/')
+def index():
+    q = Song.query.all()
+    return render_template('discovery.html', user_id=current_user.id, songs=q)
 
-    purchased_songs = [purchase.song for purchase in user.purchases]
-    out = ""
 
-    for purchase in user.purchases:
-        out += "<p>{}</p>".format(str(purchase))
+@application.route('/<tag>')
+def link(tag):
+    return f"Processing the tag '{tag}'..."
 
-    return render_template("user_library.html",purchased_songs=purchased_songs)
+
+@application.route('/settings')
+def settings():
+    return render_template('settings.html', user_id=current_user.id)

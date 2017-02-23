@@ -1,0 +1,10 @@
+{% extends 'nav.html' %}
+{% import 'macros.html' as macros %}
+{% block body %}
+    <h2>{{ macros.user_link(user.id, user.email) }}'s Library</h2>
+    <ul>
+        {% for purchase in user.purchases %}
+            <li>{{ macros.song_link(purchase.song.id, purchase.song.title) }} (Purchased from {{ purchase.seller.email }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
