@@ -19,7 +19,7 @@ else :
     DATABASES = {
         'default': {
             "ENGINE" : "POSTGRES!!!!",
-            'NAME': 'industry4',
+            'NAME': 'industry9',
             'USER': 'postgres',
             'PASSWORD': 'password',
             'HOST': 'localhost',
@@ -28,3 +28,7 @@ else :
     }
 application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://'+ DATABASES['default']['USER'] +':'+ DATABASES['default']['PASSWORD'] +'@'+ DATABASES['default']['HOST'] +':'+ DATABASES['default']['PORT'] +'/'+ DATABASES['default']['NAME']
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+application.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
+application.config['SECURITY_PASSWORD_SALT'] = 'TODO-Figure_out_if_I_should_change_this'
+application.config['SECRET_KEY'] = 'CanUGuessMe_ThisValueDOesntMatter'
+application.config['SECURITY_REGISTERABLE'] = True
