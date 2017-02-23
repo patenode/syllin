@@ -1,10 +1,9 @@
-from flask_security import Security, SQLAlchemyUserDatastore
-
-import user
-from db_model import db
-from models import User, Role, Album, Purchase, Song # For Flask-Security
 from app import application
-import views
+from db_model import db
+from flask_security import Security, SQLAlchemyUserDatastore
+from models import User, Role, Purchase, Song # For Flask-Security
+
+from syllin import views
 
 # Setup Flask-Security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)

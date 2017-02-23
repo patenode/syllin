@@ -1,8 +1,7 @@
-from models import User, Song, Album, Role, Purchase
 from flask import render_template, request
 
 import album
-import song
+from syllin import song
 import user
 from app import application
 from user import current_user
@@ -19,7 +18,7 @@ application.register_blueprint(song.views)
 @application.route('/')
 def index():
     q = Song.query.all()
-    return render_template('discovery.html', user_id=current_user.id, songs=q)
+    return render_template('album/discovery.html', user_id=current_user.id, songs=q)
 
 
 @application.route('/<tag>')
