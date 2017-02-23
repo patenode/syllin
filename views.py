@@ -10,9 +10,6 @@ from models import Song
 from templated import templated
 import boto3, os, json
 
-@application.route('/')
-def index_view():
-   return "Index"
 
 application.register_blueprint(user.views)
 application.register_blueprint(album.views)
