@@ -1,12 +1,12 @@
 from flask import render_template, request
 
-import album
+from syllin import user
 from syllin import song
-import user
-from app import application
-from user import current_user
-from models import Song
-from templated import templated
+from syllin import album
+from syllin.app import application
+from syllin.user import current_user
+from syllin.models import Song
+from syllin.templated import templated
 import boto3, os, json
 
 

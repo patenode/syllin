@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from flask import redirect
 from flask import url_for
-from models import User
+from syllin.models import User
 
 views = Blueprint(name='user',
                   import_name=__name__,

@@ -1,4 +1,4 @@
-from db_model import db
+from syllin.db_model import db
 from flask.ext.security import Security, SQLAlchemyUserDatastore, \
     UserMixin, RoleMixin, login_required
 

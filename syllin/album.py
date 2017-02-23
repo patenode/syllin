@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from models import Album
+from syllin.models import Album
 
 views = Blueprint(name='album',
                   import_name=__name__,

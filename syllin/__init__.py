@@ -1,7 +1,7 @@
-from app import application
-from db_model import db
+from syllin.app import application
+from syllin.db_model import db
 from flask_security import Security, SQLAlchemyUserDatastore
-from models import User, Role, Purchase, Song # For Flask-Security
+from syllin.models import User, Role, Purchase, Song # For Flask-Security
 
 from syllin import views
 
