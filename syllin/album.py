@@ -7,6 +7,7 @@ views = Blueprint(name='album',
                   template_folder='templates/album',
                   url_prefix='/a')
 
+
 def get_album(id):
     return Album.query.filter_by(id=id).first_or_404()
 

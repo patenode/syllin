@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+
 from syllin.models import Song
 
 views = Blueprint(name='song',
