@@ -4,17 +4,16 @@ from models import User, Role, Album, Purchase, Song # For Flask-Security
 from app import application
 import views
 
-
 # Setup Flask-Security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(application, user_datastore)
 db.init_app(application)
 
-
 def addSongs(l_song_titles):
     for song_title in l_song_titles:
         db.session.add(Song(title=song_title))
     db.session.commit()
+
 def buySong(song_id, buyer_id, seller_id):
     song = Song.query.get(song_id)
     buyer = User.query.get(buyer_id)
@@ -25,7 +24,15 @@ def buySong(song_id, buyer_id, seller_id):
     db.session.add(purchase)
     db.session.commit()
 
+def roles():
+    if not Role.query.first():
+        user_datastore.create_role(name='admin')
+        user_datastore.create_user( email='admin@example.com',
+                             password='adminpassword', roles=['admin'])
+
 def setupDatabaseForDebug():
+    roles()
+
     if not User.query.first():
         user_datastore.create_user(email='matt@nobien.net', password='password')
         user_datastore.create_user(email='joosh@nobien.net', password='password')
