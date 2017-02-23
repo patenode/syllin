@@ -1,5 +1,5 @@
 from syllin.db_model import db
-from flask.ext.security import Security, SQLAlchemyUserDatastore, \
+from flask_security import Security, SQLAlchemyUserDatastore, \
     UserMixin, RoleMixin, login_required
 
 roles_users = db.Table('roles_users',
