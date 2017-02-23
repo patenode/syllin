@@ -18,7 +18,7 @@ application.register_blueprint(song.views)
 @application.route('/')
 def index():
     q = Song.query.all()
-    return render_template('album/discovery.html', user_id=current_user.id, songs=q)
+    return render_template('discovery.html', user_id=current_user.id, songs=q)
 
 
 @application.route('/<tag>')
