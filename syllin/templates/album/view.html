@@ -1,0 +1,11 @@
+{% extends 'nav.html' %}
+{% import 'macros.html' as macros %}
+{% block body %}
+    <h2>{{ album.title }} by {{ macros.user_link(album.artist.id, album.artist.email) }}</h2>
+    <ol>
+    {% for song in album.songs %}
+        <li>{{ macros.song_link(song.id, song.title) }}</li>
+    {% endfor %}
+    </ol>
+    {{ lipsum(3) }}
+{% endblock %}

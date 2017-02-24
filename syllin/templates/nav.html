@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Syllin</title>
+</head>
+<body>
+<h1>Welcome, travelers, to Syllin.</h1>
+<details><summary>Hamburger Button</summary>
+<a href="/">Discovery</a><br>
+<a href="/u/{{ user_id }}/library">Library</a><br>
+<a href="/u/{{ user_id }}/statistics">Stats</a><br>
+<a href="/u/{{ user_id }}">User Profile</a><br>
+<a href="/settings">Settings</a><br>
+</details>
+{% block body %}
+{% endblock %}
+</body>
+</html>
