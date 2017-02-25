@@ -1,9 +1,7 @@
 {
-  "version": 3,
-  "mappings": "AAGA,eAAe;EACb,OAAO,EAAE,GAAG;IACV,YAAI,EAAE,GAAG;IACT,aAAK,EAAE,GAAG;EACZ,MAAM,EAAE,IAAI;;AAGd,IAAI;EACF,gBAAgB,EAXL,OAAO;;AAapB,SAAS;EACP,KAAK,EAAE,IAAI",
-  "sources": [
-    "../sass/syllin.sass"
-  ],
-  "names": [],
-  "file": "syllin.css"
+"version": 3,
+"mappings": "AAiBA,eAAe;EACb,OAAO,EAAE,GAAG;IACV,YAAI,EAAE,GAAG;IACT,aAAK,EAAE,GAAG;;AAGd,IAAI;EACF,gBAAgB,EAvBZ,OAAO;;AAyBb,SAAS;EACP,KAAK,EArBC,OAAO",
+"sources": ["../sass/syllin.sass"],
+"names": [],
+"file": "syllin.css"
 }

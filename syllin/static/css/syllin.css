@@ -1,16 +1,12 @@
 #main-container {
-    padding: 0px;
+  padding: 0px;
     padding-left: 0px;
-    padding-right: 0px;
-    height: 100%;
-}
+    padding-right: 0px; }
 
 .nav {
-    background-color: #fc575e;
-}
+  background-color: #fc575e; }
 
 .nav-link {
-    color: #fff;
-}
+  color: #ffffff; }
 
 /*# sourceMappingURL=syllin.css.map */
