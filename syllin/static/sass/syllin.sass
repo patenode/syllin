@@ -26,8 +26,6 @@ body
 // Site container
 #main-container
   padding: 0px
-    left: 0px
-    right: 0px
 
 #nav-drawer
   .drawer-contents
@@ -37,8 +35,27 @@ body
 .nav
   background-color: $red
 
+.drawer-nav
+  padding: 5px
+  li
+    a
+      padding:
+        right: 10px
+        left: 10px
+        top: 5px
+        bottom: 5px
+      &:focus
+        background-color: $red
+
 .nav-link
+  padding: 0px
+    left: 20px
+    right: 20px
+    top: 5px
+    bottom: 5px
   color: $white
+  font-size: 18pt
+  font-family: 'Lobster Two', cursive
 
 .nav-icon
   color: $white

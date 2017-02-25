@@ -11,9 +11,8 @@ body {
 }
 
 #main-container {
-  padding: 0px;
-    padding-left: 0px;
-    padding-right: 0px; }
+    padding: 0px;
+}
 
 #nav-drawer .drawer-contents {
     background-color: #e33e4b;
@@ -22,8 +21,31 @@ body {
 .nav {
   background-color: #fc575e; }
 
+.drawer-nav {
+    padding: 5px;
+}
+
+.drawer-nav li a {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.drawer-nav li a:focus {
+    background-color: #fc575e;
+}
+
 .nav-link {
-  color: #ffffff; }
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #ffffff;
+    font-size: 18pt;
+    font-family: "Lobster Two", cursive;
+}
 
 .nav-icon {
     color: #ffffff;
