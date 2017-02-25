@@ -20,7 +20,7 @@ def index():
 
 @application.route('/<tag>')
 def link(tag):
-    return f"Processing the tag '{tag}'..."
+    return "Processing the tag '{tag}'...".format(tag=tag)
 
 
 @application.route('/settings')

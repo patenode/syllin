@@ -3,7 +3,7 @@ from flask_security import Security, SQLAlchemyUserDatastore
 from syllin import views
 from syllin.app import application
 from syllin.db_model import db
-from syllin.models import User, Role, Purchase, Song  # For Flask-Security
+from syllin.models import User, Role, Purchase, Song, Album  
 
 # Setup Flask-Security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
@@ -11,9 +11,9 @@ security = Security(application, user_datastore)
 db.init_app(application)
 
 
-def addSongs(l_song_titles):
+def addSongs(l_song_titles, album):
     for song_title in l_song_titles:
-        db.session.add(Song(title=song_title))
+        db.session.add(Song(title=song_title, album=album))
     db.session.commit()
 
 
@@ -36,14 +36,19 @@ def roles():
 
 
 def setupDatabaseForDebug():
-    roles()
 
     if not User.query.first():
+        roles()
         user_datastore.create_user(email='matt@nobien.net', password='password')
         user_datastore.create_user(email='joosh@nobien.net', password='password')
 
-    if len(Song.query.all()) < 3:
-        addSongs(["Big booty butts", "Cat Party", "Needle in the Hay"])
+
+    if not Album.query.first():
+        db.session.add(Album(title="The Pink Album", artist=User.query.get(2)))
+
+
+    if len(Song.query.all()) < 10:
+        addSongs(["Frumpy r", "!!Curmudgeon", "Fuck ^^^^^^^me briskly"], Album.query.get(1))
         buySong(1, 2, 1)
 
     db.session.commit()

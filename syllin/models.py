@@ -35,9 +35,9 @@ class User(db.Model, UserMixin):
 class Album(db.Model):
     __tablename__ = 'album'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255))
+    title = db.Column(db.String(255), nullable=False)
     songs = db.relationship("Song", back_populates="album")
-    artist_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    artist_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     artist = db.relationship("User", backref=db.backref('albums', lazy='dynamic'))
 
 
@@ -67,7 +67,7 @@ class Purchase(db.Model):
     song = db.relationship("Song", foreign_keys=[song_id], backref=db.backref('sold', lazy='dynamic'))
 
     __table_args__ = (
-        db.UniqueConstraint('buyer_id', 'song_id', name='_song_buyer_uc'),
+        db.UniqueConstraint('buyer_id', 'song_id', name='_song_buyer_purchase_uc'),
     )
 
     def __init__(self, buyer=None, seller=None, song=None):
@@ -92,7 +92,7 @@ class Recommendation(db.Model):
     song = db.relationship("Song", foreign_keys=[song_id], backref=db.backref('recommendations', lazy='dynamic'))
 
     __table_args__ = (
-        db.UniqueConstraint('buyer_id', 'song_id', name='_song_buyer_uc'),
+        db.UniqueConstraint('buyer_id', 'song_id', name='_song_buyer_recommendation_uc'),
         )
 
     def __init__(self, buyer=None, seller=None, song=None):
