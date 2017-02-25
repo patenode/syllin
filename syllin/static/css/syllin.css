@@ -1,3 +1,7 @@
+.full-height {
+    height: 100%;
+}
+
 html {
     height: 100%;
 }
@@ -11,10 +15,23 @@ body {
     padding-left: 0px;
     padding-right: 0px; }
 
+#nav-drawer .drawer-contents {
+    background-color: #e33e4b;
+}
+
 .nav {
   background-color: #fc575e; }
 
 .nav-link {
   color: #ffffff; }
+
+.nav-icon {
+    color: #ffffff;
+}
+
+.nav-item {
+    color: #ffffff;
+    font-size: 13pt;
+}
 
 /*# sourceMappingURL=syllin.css.map */

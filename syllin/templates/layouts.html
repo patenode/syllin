@@ -7,11 +7,11 @@
     <title>{% block title %}Syllin{% endblock %}</title>
 </head>
 <body class="has-canvas">
-<div class="container-fluid" id="main-container">
+<div class="container-fluid full-height" id="main-container">
     <div>
         {% include 'nav.html' %}
     </div>
-    <div class="has-inner-drawer">   <!-- TODO: Implement drawer -->
+    <div class="has-inner-drawer full-height">   <!-- TODO: Implement drawer -->
         {% include 'drawer.html' %}
         {% block content %}{% endblock %}
     </div>
