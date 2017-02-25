@@ -1,11 +1,9 @@
-<input type="file" id="file_input"/>
-<p id="status">Please select a file</p>
-<img id="preview" src="/syllin/static/default.png" />
+<input type="file" id="file_input"/> <!-- OnChange method in fileUpload.js -->
+<p id="status">Please select a song</p>
 
-<form method="POST" action="/submit_form/">
-  <input type="hidden" id="avatar-url" name="avatar-url" value="/static/default.png">
-  <input type="text" name="song_name" placeholder="Name of Song">
-  <input type="text" name="" placeholder="Full name">
-  <input type="submit" value="Update profile">
+<form method="POST" action="/submit_form">
+  <input type="hidden" id="song_url" name="song_url" value="/static/default.png">
+  <input type="text" id="song_name" name="song_name" placeholder="Name of Song">
+  <input type="submit" value="Add Song">
 </form>
 <script type="text/javascript" src="{{url_for('static', filename='js/fileUpload.js')}}"></script>

@@ -1,10 +1,11 @@
 import boto3, os, json
 from flask import render_template, request
-from flask_security import roles_accepted
+from flask_security import roles_accepted, login_required
+from flask_security.core import current_user
 from syllin import user, song, album
 from syllin.security import user_datastore
 from syllin.app import application
-from syllin.user import current_user
+#from syllin.user import current_user
 from syllin.db_model import db
 from syllin.models import Song, User, Role
 from syllin.templated import templated
@@ -15,6 +16,7 @@ application.register_blueprint(song.views)
 
 
 @application.route('/')
+@login_required
 def index():
     q = Song.query.all()
     return render_template('discovery.html', user_id=current_user.id, songs=q)
@@ -83,16 +85,19 @@ def sign_s3():
     })
 
 
-@application.route("/submit_form/", methods=["POST"])
+@application.route("/submit_form", methods=["POST"])
 @templated('printSelectedFile.html')
+@roles_accepted('admin', 'artist')
 def submit_form():
-    username = request.form["username"]
-    full_name = request.form["full-name"]
-    avatar_url = request.form["avatar-url"]
+    song_name = request.form["song_name"]
+    song_url = request.form["song_url"]
 
+    song = Song(title=song_name, resource_uri=song_url, artist=current_user)
+    db.session.add(song)
+    db.session.commit();
     # update_account(username, full_name, avatar_url) ##TODO -- Print the url, just to prove that it's coming through (in html)
 
 
-    return dict(fileUrl=avatar_url)
+    return dict(fileUrl=song_url)
 
 

@@ -44,10 +44,16 @@ class Album(db.Model):
 class Song(db.Model):
     __tablename__ = 'song'
     id = db.Column(db.Integer, primary_key=True)
+    
     album_id = db.Column(db.Integer(), db.ForeignKey("album.id"))
     album = db.relationship("Album", back_populates="songs")
+    
     resource_uri = db.Column(db.Text())
+    
     title = db.Column(db.Text())
+
+    artist_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    artist = db.relationship("User", backref=db.backref('songs', lazy='dynamic'))
 
     def __repr__(self):
         return "{} : {}".format(self.id, self.title)

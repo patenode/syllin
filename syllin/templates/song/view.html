@@ -1,7 +1,10 @@
 {% extends 'nav.html' %}
 {% import 'macros.html' as macros %}
 {% block body %}
-<h2>"{{ song.title }}" by {{ macros.user_link(song.album.artist.id, song.album.artist.email) }}</h2><br>
-    <h3>On the album "{{ macros.album_link(song.album.id, song.album.title) }}"</h3>
-    {{ lipsum(2) }}
+	<h2>"{{ song.title }}" by {{ macros.user_link(song.artist.id, song.artist.email) }}</h2><br>
+	{% if song.album %}
+	    <h3>On the album "{{ macros.album_link(song.album.id, song.album.title) }}"</h3>
+	{% endif %}
+
+	{{ lipsum(2) }}
 {% endblock %}
