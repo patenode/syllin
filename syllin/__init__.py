@@ -1,13 +1,17 @@
 from flask_security import Security, SQLAlchemyUserDatastore
-
+from flask_security.utils import encrypt_password
 from syllin import views
+from syllin.security import user_datastore, security
 from syllin.app import application
 from syllin.db_model import db
 from syllin.models import User, Role, Purchase, Song, Album  
+from flask_mail import Mail
 
+mail = Mail()
+
+mail.init_app(application)
 # Setup Flask-Security
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-security = Security(application, user_datastore)
+
 db.init_app(application)
 
 
@@ -30,17 +34,18 @@ def buySong(song_id, buyer_id, seller_id):
 
 def roles():
     if not Role.query.first():
+        user_datastore.create_role(name="artist")
         user_datastore.create_role(name='admin')
         user_datastore.create_user(email='admin@example.com',
-                                   password='adminpassword', roles=['admin'])
+                                   password=encrypt_password('adminpassword'), roles=['admin'])
 
 
 def setupDatabaseForDebug():
-
+    
     if not User.query.first():
         roles()
-        user_datastore.create_user(email='matt@nobien.net', password='password')
-        user_datastore.create_user(email='joosh@nobien.net', password='password')
+        user_datastore.create_user(email='matt@nobien.net', password=encrypt_password('password'))
+        user_datastore.create_user(email='joosh@nobien.net',password=encrypt_password('password'))
 
 
     if not Album.query.first():

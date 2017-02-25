@@ -20,7 +20,7 @@ else:
     DATABASES = {
         'default': {
             "ENGINE": "POSTGRES!!!!",
-            'NAME': 'industry9',
+            'NAME': 'i1',
             'USER': 'postgres',
             'PASSWORD': 'password',
             'HOST': 'localhost',
@@ -36,3 +36,5 @@ application.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
 application.config['SECURITY_PASSWORD_SALT'] = 'TODO-Figure_out_if_I_should_change_this'
 application.config['SECRET_KEY'] = 'CanUGuessMe_ThisValueDOesntMatter'
 application.config['SECURITY_REGISTERABLE'] = True
+application.config['SECURITY_CONFIRM_ERROR_VIEW'] = "/login"
+application.config['SECURITY_UNAUTHORIZED_VIEW'] = '/login'
