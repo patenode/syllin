@@ -37,4 +37,5 @@ application.config['SECURITY_PASSWORD_SALT'] = 'TODO-Figure_out_if_I_should_chan
 application.config['SECRET_KEY'] = 'CanUGuessMe_ThisValueDOesntMatter'
 application.config['SECURITY_REGISTERABLE'] = True
 application.config['SECURITY_CONFIRM_ERROR_VIEW'] = "/login"
-application.config['SECURITY_UNAUTHORIZED_VIEW'] = '/login'
+application.config['SECURITY_UNAUTHORIZED_VIEW'] = '/login' 
+application.config['SECURITY_POST_REGISTER_VIEW'] = '/' 

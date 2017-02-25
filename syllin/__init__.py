@@ -7,6 +7,21 @@ from syllin.db_model import db
 from syllin.models import User, Role, Purchase, Song, Album  
 from flask_mail import Mail
 
+
+application.config.update(dict(
+    DEBUG = True,
+    # email server
+    MAIL_SERVER = 'smtp.googlemail.com',
+    MAIL_PORT = 465,
+    MAIL_USE_TLS = False,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = 'syllin.mail',
+    MAIL_PASSWORD = 'Syllinpassword',
+
+    # administrator list
+    ADMINS = ['my_username@gmail.com']
+))
+
 mail = Mail()
 
 mail.init_app(application)
