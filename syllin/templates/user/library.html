@@ -1,6 +1,6 @@
-{% extends 'nav.html' %}
+{% extends 'layouts.html' %}
 {% import 'macros.html' as macros %}
-{% block body %}
+{% block content %}
     <h2>{{ macros.user_link(user.id, user.email) }}'s Library</h2>
     <ul>
         {% for purchase in user.purchases %}
