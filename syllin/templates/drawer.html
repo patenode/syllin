@@ -1,27 +1,17 @@
-{% import 'macros.html' as macros %}
-
-{% macro drawer_item(href, fa_icon_name, text) %}
-    <a href="{{ href }}">
-        <div class="d-flex justify-content-left">
-            {{ macros.icon(fa_icon_name ~ ' fa-2x nav-icon align-middle') }}<span
-                class="align-middle nav-item"><b>{{ text }}</b></span>
-        </div>
-    </a>
-{% endmacro %}
+{% from 'macros/base.html' import link, icon %}
+{% from 'macros/nav.html' import drawer_item %}
 
 <!-- Drawer -->
-<div id="nav-drawer" class="drawer drawer-inside dw-lg-2 dw-md-2 dw-sm-3 dw-xs-6 fold animate border-0">
     <nav class="drawer-contents d-flex flex-column">
         {{ drawer_item('#', 'fa-rocket', 'Discovery') }}
         {{ drawer_item('#', 'fa-th-list', 'Library') }}
         {{ drawer_item('#', 'fa-bar-chart', 'Stats') }}
         <div class="drawer-footer locked d-flex justify-content-between">
-            <a href="#">
+            {% call link('#') %}
                 <img src="/static/img/placeholder_img.gif">
-            </a>
-            <a href="#">
-                {{ macros.icon("fa-cog fa-2x") }}
-            </a>
+            {% endcall %}
+            {% call link('#') %}
+                {{ icon("fa-cog fa-2x") }}
+            {% endcall %}
         </div>
     </nav>
-</div>

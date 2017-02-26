@@ -9,13 +9,6 @@
           </resourceRoots>
         </entryData>
       </entry>
-      <entry url="file://$PROJECT_DIR$/syllin">
-        <entryData>
-          <resourceRoots>
-            <path value="file://$PROJECT_DIR$/syllin/static" />
-          </resourceRoots>
-        </entryData>
-      </entry>
     </contentEntries>
   </component>
 </project>

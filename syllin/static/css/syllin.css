@@ -12,7 +12,6 @@
 
 html {
     height: 100%;
-    overflow: hidden;
 }
 
 html body.container-fluid {
@@ -81,9 +80,29 @@ html body.container-fluid #viewport #nav-drawer .drawer-footer a {
 }
 
 html body.container-fluid #viewport #content {
-    padding-top: 61px;
+    padding-top: 46px;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.badge {
+    margin-right: 5px;
+    font-size: 10pt;
+}
+
+.badge-active {
+    background-color: #fc575e;
+}
+
+.badge-inactive {
+    color: #4b4b4b;
+    background-color: #f0f1f5;
+}
+
+.square, .big-square {
+    position: relative;
+    border: solid 1px;
+    padding-top: 33%;
 }
 
 /*# sourceMappingURL=syllin.css.map */

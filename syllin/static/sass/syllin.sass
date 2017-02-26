@@ -28,7 +28,6 @@ $tumblr-blue: #36465d
 
 html
   height: 100%
-  overflow: hidden
   // Root container
   body.container-fluid
     padding:
@@ -95,6 +94,26 @@ html
           a
             color: $white
       #content
-        padding-top: 61px
+        padding-top: 46px
         padding-left: 10px
         padding-right: 10px
+
+// Discovery
+.badge
+  margin-right: 5px
+  font-size: 10pt
+
+.badge-active
+  background-color: $red
+
+.badge-inactive
+  color: $dark-gray
+  background-color: $gray
+
+.square
+  position: relative
+  border: solid 1px
+  padding-top: 33%
+
+.big-square
+  @extend .square

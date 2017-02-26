@@ -6,7 +6,7 @@
     {% block head %}{% endblock %}
 
     <!-- Title -->
-    <title>{% block title %}Syllin{% endblock %}</title>
+    <title>{% block title %}{% endblock %}{% if title is defined %} - {% endif %}Syllin</title>
 </head>
 
 <!-- Body -->
@@ -15,9 +15,11 @@
 <!-- Nav Bar -->
 {% include 'nav.html' %}
 
-<!-- Content -->
-<div class="has-inner-drawer" id="viewport">   <!-- TODO: Implement drawer -->
-    {% include 'drawer.html' %}
+<!-- Viewport -->
+<div class="has-inner-drawer" id="viewport">
+    <div id="nav-drawer" class="drawer drawer-inside dw-lg-2 dw-md-2 dw-sm-3 dw-xs-6 fold animate border-0">
+        {% include 'drawer.html' %}
+    </div>
     <div id="content">
         {% block content %}{% endblock %}
     </div>

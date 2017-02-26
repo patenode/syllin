@@ -1,9 +1,10 @@
-{% import 'macros.html' as macros %}
-
 {% extends 'layout.html' %}
+
+{% import 'macros/base.html' as macros %}
+{% import 'macros/discovery.html' as discovery %}
 
 {% block content %}
     {{ macros.title('Discovery') }}
-    {{ macros.discovery_tags() }}
-    {{ macros.discovery_feed() }}
+    {{ discovery.tags(tags) }}
+    {{ discovery.feed(songs) }}
 {% endblock %}
