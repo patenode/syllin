@@ -2,7 +2,7 @@ branch-defaults:
   default:
     environment: postgresSample
   master:
-    environment: syllin-env
+    environment: syllin-env-01
     group_suffix: null
 environment-defaults:
   flask-sample-db-env:
