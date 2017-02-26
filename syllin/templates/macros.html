@@ -25,3 +25,16 @@
 {% macro icon(icon_classes) -%}
     <i class="fa {{ icon_classes }}"></i>
 {%- endmacro %}
+
+{% macro title(main, subtitle=None) -%}
+    <h2 class="h2 text-center">{{ main }}</h2>
+    {% if subtitle %}<h5 class="h5 text-center">{{ subtitle }}</h5>{% endif %}
+{%- endmacro %}
+
+{% macro discovery_tags() -%}
+    Discovery tags<br>
+{%- endmacro %}
+
+{% macro discovery_feed() -%}
+    Discovery feed<br>
+{%- endmacro %}

@@ -77,12 +77,11 @@ html body.container-fluid #viewport #nav-drawer .drawer-contents a .nav-item {
 }
 
 html body.container-fluid #viewport #nav-drawer .drawer-footer a {
-    padding-bottom: 0;
     color: #ffffff;
 }
 
 html body.container-fluid #viewport #content {
-    padding-top: 51px;
+    padding-top: 61px;
     padding-left: 10px;
     padding-right: 10px;
 }
