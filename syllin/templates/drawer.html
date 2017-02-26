@@ -1,28 +1,27 @@
-<div id="nav-drawer" class="drawer drawer-inside dw-xs-5 fold.open full-height" aria-labelledby="nav-drawer">
-    <div class="drawer-contents">
-        <ul class="drawer-nav">
-            <li role="presentation">
-                <a href="#">
-                    <div class="d-flex justify-content-between">
-                        <i class="mr-auto fa fa-rocket fa-2x nav-icon align-middle"></i><span
-                            class="align-middle ml-auto nav-item">Discovery</span>
-                    </div>
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#">
-                    <div class="d-flex justify-content-between">
-                        <i class="fa fa-th-list fa-2x nav-icon align-middle"></i><span class="align-middle nav-item">Library</span>
-                    </div>
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#">
-                    <div class="d-flex justify-content-between">
-                        <i class="fa fa-bar-chart fa-2x nav-icon align-middle"></i><span class="align-middle nav-item">Stats</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
+{% import 'macros.html' as macros %}
+
+{% macro drawer_item(href, fa_icon_name, text) %}
+    <a href="{{ href }}">
+        <div class="d-flex justify-content-left">
+            {{ macros.icon(fa_icon_name ~ ' fa-2x nav-icon align-middle') }}<span
+                class="align-middle nav-item"><b>{{ text }}</b></span>
+        </div>
+    </a>
+{% endmacro %}
+
+<!-- Drawer -->
+<div id="nav-drawer" class="drawer drawer-inside dw-xs-6 dw-md-2 dw-lg-2 dw-sm-3 fold animate">
+    <nav class="drawer-contents d-flex flex-column">
+        {{ drawer_item('#', 'fa-rocket', 'Discovery') }}
+        {{ drawer_item('#', 'fa-th-list', 'Library') }}
+        {{ drawer_item('#', 'fa-bar-chart', 'Stats') }}
+        <div class="drawer-footer locked d-flex justify-content-between">
+            <a href="#">
+                <img src="/static/img/placeholder_img.gif">
+            </a>
+            <a href="#">
+                {{ macros.icon("fa-cog fa-2x") }}
+            </a>
+        </div>
+    </nav>
 </div>

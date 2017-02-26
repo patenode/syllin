@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'head.html' %}
+    {% block head %}{% endblock %}
+
+    <!-- Title -->
+    <title>{% block title %}Syllin{% endblock %}</title>
+</head>
+
+<!-- Body -->
+<body class="has-canvas container-fluid">
+
+<!-- Nav Bar -->
+{% include 'nav.html' %}
+
+<!-- Content -->
+<div class="has-inner-drawer" id="viewport">   <!-- TODO: Implement drawer -->
+    {% include 'drawer.html' %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+{% include 'js_imports.html' %}
+
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-{% extends 'layouts.html' %}
+{% extends 'layout.html' %}
 {% import 'macros.html' as macros %}
 {% block content %}
 <h2>"{{ song.title }}" by {{ macros.user_link(song.album.artist.id, song.album.artist.email) }}</h2><br>

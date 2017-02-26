@@ -14,52 +14,88 @@ $facebook-blue: #3b5999
 $pinterest-red: #bd081b
 $tumblr-blue: #36465d
 
-.full-height
-  height: 100%
+.animate
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+  /* adds animation for all transitions */
+
+  -webkit-transition: .25s ease-in-out
+  -moz-transition: .25s ease-in-out
+  -o-transition: .25s ease-in-out
+  transition: .25s ease-in-out
+  -webkit-text-size-adjust: none
 
 html
   height: 100%
+  overflow: hidden
+  // Root container
+  body.container-fluid
+    padding:
+      left: 0
+      right: 0
+    height: 100%
+    // Nav Bar
+    nav
+      background-color: $red
+      position: absolute
+      z-index: 10000
 
-body
-  height: 100%
+      // Nav Link
+      .nav-link
+        padding: 0
+          left: 20px
+          right: 20px
+          top: 5px
+          bottom: 5px
+        color: $white
+        font-size: 18pt
+        font-family: 'Lobster Two', cursive
 
-// Site container
-#main-container
-  padding: 0px
+    // Nav Drawer
+    #viewport
+      height: 100%
+      #nav-drawer
+        .drawer-contents
+          padding:
+            top: 56px
+            left: 10px
+            right: 10px
+          background-color: $dark-red
 
-#nav-drawer
-  .drawer-contents
-    background-color: $dark-red
+          // Link Rectangle
+          a
+            margin-bottom: 10px
+            padding:
+              right: 10px
+              left: 10px
+              top: 5px
+              bottom: 5px
 
-// Nav styles
-.nav
-  background-color: $red
+            // Focused Style
+            &:focus
+              background-color: $red
 
-.drawer-nav
-  padding: 5px
-  li
-    a
-      padding:
-        right: 10px
-        left: 10px
-        top: 5px
-        bottom: 5px
-      &:focus
-        background-color: $red
+            // Hover Style
+            &:hover
+              background-color: $red
+              text-decoration: none
 
-.nav-link
-  padding: 0px
-    left: 20px
-    right: 20px
-    top: 5px
-    bottom: 5px
-  color: $white
-  font-size: 18pt
-  font-family: 'Lobster Two', cursive
+            // Link Icon
+            .nav-icon
+              color: $white
 
-.nav-icon
-  color: $white
+            // Link Text
+            .nav-item
+              color: $white
+              padding-left: 15px
+              font-size: 13pt
 
-.nav-item
-  color: $white
-  font-size: 13pt
+        .drawer-footer
+          a
+            padding-bottom: 0
+            color: $white
+      #content
+        padding-top: 51px
+        padding-left: 10px
+        padding-right: 10px

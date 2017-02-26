@@ -21,3 +21,7 @@
 {% macro album_link(id, text) -%}
     <a href="/a/{{ id }}">{{ text }}</a>
 {%- endmacro %}
+
+{% macro icon(icon_classes) -%}
+    <i class="fa {{ icon_classes }}"></i>
+{%- endmacro %}
