@@ -2,7 +2,7 @@ branch-defaults:
   default:
     environment: syllinDb-env
   master:
-    environment: syllinDb-env
+    environment: syllinDb-env-02
 environment-defaults:
   syllinDb-env:
     branch: null
