@@ -6,7 +6,7 @@
     {% block discovery_feed %}
         <ul>
             {% for song in songs %}
-                {% if song.album %}
+                {% if not song.album %}
                 <li><a href="/s/{{ song.id }}">{{ song.title }} by {{ song.artist.email }} - Album: {{ song.album.title }}</a></li>
                 {% else %}
                 <li><a href="/s/{{ song.id }}">{{ song.title }} by {{ song.artist.email }}</a></li>
