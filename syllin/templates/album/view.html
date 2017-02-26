@@ -1,5 +1,5 @@
-{% extends 'layout.html' %}
-{% import 'macros/base.html' as macros %}
+{% extends 'layout.jinja2' %}
+{% import 'macros/base.jinja2' as macros %}
 {% block content %}
     <h2>{{ album.title }} by {{ macros.user_link(album.artist.id, album.artist.email) }}</h2>
     <ol>
