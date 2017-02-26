@@ -1,19 +1,16 @@
 branch-defaults:
   default:
-    environment: postgresSample
+    environment: syllinDb-env
   master:
-    environment: syllin-env-01
-    group_suffix: null
+    environment: syllinDb-env
 environment-defaults:
-  flask-sample-db-env:
+  syllinDb-env:
     branch: null
     repository: null
 global:
-  application_name: flask-tutorial
-  branch: null
+  application_name: syllin-db
   default_ec2_keyname: aws-eb
-  default_platform: Python 2.7
+  default_platform: 64bit Amazon Linux 2016.09 v2.3.1 running Python 3.4
   default_region: us-west-2
   profile: eb-cli
-  repository: null
   sc: git
