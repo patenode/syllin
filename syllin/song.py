@@ -8,11 +8,6 @@ views = Blueprint(name='song',
                   url_prefix='/s')
 
 
-@views.route('/')
-def discovery():
-    return render_template('song/discovery.html')
-
-
 @views.route('/<int:song_id>')
 def view(song_id):
     s = Song.query.filter_by(id=song_id).first_or_404()

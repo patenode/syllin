@@ -12,12 +12,6 @@ def get_album(id):
     return Album.query.filter_by(id=id).first_or_404()
 
 
-@views.route('/')
-def discovery():
-    q = Album.query.all()
-    return render_template('album/discovery.html', albums=q)
-
-
 @views.route('/<int:album_id>')
 def view(album_id):
     return render_template('album/view.html', album=get_album(album_id))
