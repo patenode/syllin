@@ -10,6 +10,7 @@
 {% block content %}
     {{ macros.title('Discovery') }}
     {{ discovery.tags(tags) }}
+    {# TODO: Implement scrolling feature in discovery  #}
     {{ discovery.feed(songs) }}
 {% endblock %}
 

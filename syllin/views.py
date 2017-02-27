@@ -19,7 +19,7 @@ def index():
     # Purely for visualization, creates tag list 't'
     from random import getrandbits
     rand_bool = lambda: bool(getrandbits(1))
-    t = [(f'Genre {i}', rand_bool()) for i in range(30)]
+    t = [(f'Genre {i}', rand_bool()) for i in range(5)]
 
     return render_template('discovery.html', user_id=current_user.id, songs=q, tags=t)
 

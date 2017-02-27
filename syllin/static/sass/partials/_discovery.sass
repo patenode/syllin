@@ -10,20 +10,13 @@
   color: $dark-gray
   background-color: $gray
 
-%bordered
-  border: solid 1px
-  background-color: $blue
-
 .grid
   width: 100%
 
-.grid-sizer
-  width: 33%
-
 .grid-item
-  @extend .grid-sizer
-  @extend %bordered
-
-.grid-item--width2
-  @extend %bordered
-  width: 66%
+  padding: 0
+    left: 0
+    right: 0
+  .grid-item-contents
+    img
+      width: 100%
