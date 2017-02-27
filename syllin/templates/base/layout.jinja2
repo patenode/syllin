@@ -17,14 +17,19 @@
 
 <!-- Viewport -->
 <div class="has-inner-drawer" id="viewport">
+
+    <!-- Nav Drawer -->
     <div id="nav-drawer" class="drawer drawer-inside dw-lg-2 dw-md-2 dw-sm-3 dw-xs-6 fold animate border-0">
         {% include 'nav/drawer.jinja2' %}
     </div>
+
+    <!-- Main Content -->
     <div id="content">
         {% block content %}{% endblock %}
     </div>
 </div>
 
+<!-- JavaScript -->
 {% include 'base/js.jinja2' %}
 {% block js %}{% endblock %}
 
