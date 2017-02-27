@@ -1,0 +1,28 @@
+{% macro feed(songs) -%}
+    {% if songs is defined %}
+        {% for three_songs in songs|batch(3) %}
+            Song Row {{ loop.index }}:
+            {% for song in three_songs %}{{ song.title|truncate(16) }}{% if not loop.last %}, {% endif %}{% endfor %}
+            <br>
+        {% endfor %}
+    {% endif %}
+{%- endmacro %}
+
+{% macro badge(text, suffix=None) -%}
+    <span class="badge{% if suffix %} badge-{{ suffix }}{% endif %}">{{ text }}</span>
+{%- endmacro %}
+
+{% macro tags(tags) -%}
+    {% if tags %}
+        <div class="d-flex p-2">
+            {% for tag in tags %}
+                {% if tag[1] %}
+                    {% set badge_style = 'active' %}
+                {% else %}
+                    {% set badge_style = 'inactive' %}
+                {% endif %}
+                {{ badge(tag[0], badge_style) }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{%- endmacro %}

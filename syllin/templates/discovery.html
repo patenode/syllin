@@ -1,7 +1,7 @@
-{% extends 'layout.jinja2' %}
+{% extends 'base/layout.jinja2' %}
 
-{% import 'macros/base.jinja2' as macros %}
-{% import 'macros/discovery.jinja2' as discovery %}
+{% import 'base/macros.jinja2' as macros %}
+{% import 'discovery/macros.jinja2' as discovery %}
 
 {% block content %}
     {{ macros.title('Discovery') }}

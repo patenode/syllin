@@ -1,5 +1,7 @@
-{% extends 'layout.jinja2' %}
-{% import 'macros/base.jinja2' as macros %}
+{% extends 'base/layout.jinja2' %}
+
+{% import 'base/macros.jinja2' as macros %}
+
 {% block content %}
     <h2>{{ user.email }}'s Profile</h2>
     {{ lipsum(3) }}
