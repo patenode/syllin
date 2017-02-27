@@ -1,19 +1,20 @@
 {% set feed_pattern = cycler(1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0) %}
+{% set sizing_classes = ['col-4', 'col-8'] %}
 
 {% macro feed(songs) -%}
     <!--{{ feed_pattern.reset() }}-->
     <div class="container-fluid">
         <div id="discovery-feed" class="grid">
-            <div class="grid-sizer col-4"></div>
+            <div class="grid-sizer {{ sizing_classes[0] }}"></div>
             {% for song in songs %}
                 {% if feed_pattern.next() == 1 %}
-                    {% set classes = "grid-item--width-2 col-8" %}
+                    {% set classes = "grid-item--width-2 " + sizing_classes[1] %}
                 {% else %}
-                    {% set classes = "col-4" %}
+                    {% set classes = sizing_classes[0] %}
                 {% endif %}
                 <div class="grid-item {{ classes }}">
                     <div class="grid-item-contents">
-                        <img src="/static/img/placeholder_img.gif">
+                        <img class="album-art" src="/static/img/placeholder_img.gif">
                     </div>
                 </div>
             {% endfor %}
