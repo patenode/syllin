@@ -2,16 +2,16 @@
 {% from 'nav/macros.jinja2' import drawer_item %}
 
 <!-- Drawer -->
-    <nav class="drawer-contents d-flex flex-column">
-        {{ drawer_item('#', 'fa-rocket', 'Discovery') }}
-        {{ drawer_item('#', 'fa-th-list', 'Library') }}
-        {{ drawer_item('#', 'fa-bar-chart', 'Stats') }}
-        <div class="drawer-footer locked d-flex justify-content-between">
-            {% call link('#') %}
-                <img src="/static/img/placeholder_img.gif">
-            {% endcall %}
-            {% call link('#') %}
-                {{ icon("fa-cog fa-2x") }}
-            {% endcall %}
-        </div>
-    </nav>
+<nav id="nav-drawer" class="drawer-contents d-flex flex-column">
+    {{ drawer_item('#', 'fa-rocket', 'Discovery') }}
+    {{ drawer_item('#', 'fa-th-list', 'Library') }}
+    {{ drawer_item('#', 'fa-bar-chart', 'Stats') }}
+    <div class="drawer-footer locked d-flex justify-content-between">
+        {% call link('#') %}
+            <img src="/static/img/placeholder_img.gif">
+        {% endcall %}
+        {% call link('#') %}
+            {{ icon("fa-cog fa-2x") }}
+        {% endcall %}
+    </div>
+</nav>

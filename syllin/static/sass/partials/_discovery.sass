@@ -1,0 +1,29 @@
+// Discovery
+.badge
+  margin-right: 5px
+  font-size: 10pt
+
+.badge-active
+  background-color: $red
+
+.badge-inactive
+  color: $dark-gray
+  background-color: $gray
+
+%bordered
+  border: solid 1px
+  background-color: $blue
+
+.grid
+  width: 100%
+
+.grid-sizer
+  width: 33%
+
+.grid-item
+  @extend .grid-sizer
+  @extend %bordered
+
+.grid-item--width2
+  @extend %bordered
+  width: 66%

@@ -20,13 +20,23 @@ html body.container-fluid {
     height: 100%;
 }
 
-html body.container-fluid nav {
+#viewport {
+    height: 100%;
+}
+
+#content {
+    padding-top: 46px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#nav-bar {
     background-color: #fc575e;
     position: absolute;
     z-index: 10000;
 }
 
-html body.container-fluid nav .nav-link {
+#nav-bar .nav-link {
     padding: 0;
     padding-left: 20px;
     padding-right: 20px;
@@ -37,18 +47,14 @@ html body.container-fluid nav .nav-link {
     font-family: "Lobster Two", cursive;
 }
 
-html body.container-fluid #viewport {
-    height: 100%;
-}
-
-html body.container-fluid #viewport #nav-drawer .drawer-contents {
+.drawer-contents {
     padding-top: 56px;
     padding-left: 10px;
     padding-right: 10px;
     background-color: #e33e4b;
 }
 
-html body.container-fluid #viewport #nav-drawer .drawer-contents a {
+.drawer-contents a {
     margin-bottom: 10px;
     padding-right: 10px;
     padding-left: 10px;
@@ -56,33 +62,27 @@ html body.container-fluid #viewport #nav-drawer .drawer-contents a {
     padding-bottom: 5px;
 }
 
-html body.container-fluid #viewport #nav-drawer .drawer-contents a:focus {
+.drawer-contents a:focus {
     background-color: #fc575e;
 }
 
-html body.container-fluid #viewport #nav-drawer .drawer-contents a:hover {
+.drawer-contents a:hover {
     background-color: #fc575e;
     text-decoration: none;
 }
 
-html body.container-fluid #viewport #nav-drawer .drawer-contents a .nav-icon {
+.drawer-contents a .nav-icon {
     color: #ffffff;
 }
 
-html body.container-fluid #viewport #nav-drawer .drawer-contents a .nav-item {
+.drawer-contents a .nav-item {
     color: #ffffff;
     padding-left: 15px;
     font-size: 13pt;
 }
 
-html body.container-fluid #viewport #nav-drawer .drawer-footer a {
+.drawer-contents .drawer-footer a {
     color: #ffffff;
-}
-
-html body.container-fluid #viewport #content {
-    padding-top: 46px;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .badge {
@@ -116,4 +116,4 @@ html body.container-fluid #viewport #content {
     width: 66%;
 }
 
-/*# sourceMappingURL=syllin.css.map */
+/*# sourceMappingURL=main.css.map */
