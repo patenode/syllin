@@ -110,10 +110,20 @@ html
   color: $dark-gray
   background-color: $gray
 
-.square
-  position: relative
+%bordered
   border: solid 1px
-  padding-top: 33%
+  background-color: $blue
 
-.big-square
-  @extend .square
+.grid
+  width: 100%
+
+.grid-sizer
+  width: 33%
+
+.grid-item
+  @extend .grid-sizer
+  @extend %bordered
+
+.grid-item--width2
+  @extend %bordered
+  width: 66%

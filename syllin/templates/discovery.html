@@ -3,8 +3,16 @@
 {% import 'base/macros.jinja2' as macros %}
 {% import 'discovery/macros.jinja2' as discovery %}
 
+{% block title %}
+    Discovery
+{% endblock %}
+
 {% block content %}
     {{ macros.title('Discovery') }}
     {{ discovery.tags(tags) }}
     {{ discovery.feed(songs) }}
+{% endblock %}
+
+{% block js %}
+    {% include 'discovery/js.jinja2' %}
 {% endblock %}

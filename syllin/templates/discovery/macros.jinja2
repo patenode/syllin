@@ -1,11 +1,8 @@
 {% macro feed(songs) -%}
-    {% if songs is defined %}
-        {% for three_songs in songs|batch(3) %}
-            Song Row {{ loop.index }}:
-            {% for song in three_songs %}{{ song.title|truncate(16) }}{% if not loop.last %}, {% endif %}{% endfor %}
-            <br>
-        {% endfor %}
-    {% endif %}
+    <div class="grid">
+
+
+    </div>
 {%- endmacro %}
 
 {% macro badge(text, suffix=None) -%}

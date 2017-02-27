@@ -99,10 +99,21 @@ html body.container-fluid #viewport #content {
     background-color: #f0f1f5;
 }
 
-.square, .big-square {
-    position: relative;
+.grid-item, .grid-item--width2 {
     border: solid 1px;
-    padding-top: 33%;
+    background-color: #44bbff;
+}
+
+.grid {
+    width: 100%;
+}
+
+.grid-sizer, .grid-item {
+    width: 33%;
+}
+
+.grid-item--width2 {
+    width: 66%;
 }
 
 /*# sourceMappingURL=syllin.css.map */
