@@ -3,10 +3,7 @@
 {% import 'base/macros.jinja2' as macros %}
 
 {% block content %}
-    <h2>{{ macros.user_link(user.id, user.email) }}'s Library</h2>
-    <ul>
-        {% for purchase in user.purchases %}
-            <li>{{ macros.song_link(purchase.song.id, purchase.song.title) }} (Purchased from {{ purchase.seller.email }})</li>
-        {% endfor %}
-    </ul>
+    {{ macros.title(user.email ~ "'s Library") }}
+    <!-- TODO: User Library Page -->
+    This is where a user's library belongs.
 {% endblock %}

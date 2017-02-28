@@ -3,13 +3,7 @@
 {% import 'base/macros.jinja2' as macros %}
 
 {% block content %}
-    <h2>{{ user.email }}'s Profile</h2>
-    {{ lipsum(3) }}
-    Albums:
-    <ul>
-        {% for album in user.albums %}
-            <li>{{ macros.album_link(album.id, album.title) }}</li>
-        {% endfor %}
-    </ul>
-    {{ macros.library_link(user.id, "See my library") }}
+    {{ macros.title(user.email ~ "'s Profile", "#" ~ user.id ~ " of the masses") }}
+    <!-- TODO: User Profile Page -->
+    This is where user profiles belong.
 {% endblock %}

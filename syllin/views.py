@@ -19,19 +19,19 @@ def index():
     # Purely for visualization, creates tag list 't'
     from random import getrandbits
     rand_bool = lambda: bool(getrandbits(1))
-    t = [(f'Genre {i}', rand_bool()) for i in range(5)]
+    t = [('Genre {i}'.format(i=i), rand_bool()) for i in range(5)]
 
-    return render_template('discovery.html', user_id=current_user.id, songs=q, tags=t)
+    return render_template('discovery.html', user=current_user, songs=q, tags=t)
 
 
 @application.route('/<tag>')
 def link(tag):
-    return f"Processing the tag '{tag}'..."
+    return "Processing the tag '{tag}'...".format(tag=tag)
 
 
 @application.route('/settings')
 def settings():
-    return render_template('settings.html', user_id=current_user.id)
+    return render_template('settings.html', user=current_user)
 
 
 # possible problem with forward slash in app.route?

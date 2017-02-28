@@ -2,8 +2,11 @@
 
 {% import 'base/macros.jinja2' as macros %}
 
+{% block title %}Song "{{ song.title }}"{% endblock %}
+
 {% block content %}
-<h2>"{{ song.title }}" by {{ macros.user_link(song.album.artist.id, song.album.artist.email) }}</h2><br>
-    <h3>On the album "{{ macros.album_link(song.album.id, song.album.title) }}"</h3>
+    {{ macros.title(song.title, song.album.title ~ " - " ~ song.album.artist.email) }}
+    <!-- TODO: Song View Page -->
+    This is where song views belong.
     {{ lipsum(2) }}
 {% endblock %}
