@@ -1,0 +1,22 @@
+{% macro link(href) -%}
+    <a href="{{ href }}">
+        {{ caller() }}
+    </a>
+{%- endmacro %}
+
+{% macro icon(icon_classes) -%}
+    <i class="fa {{ icon_classes }}"></i>
+{%- endmacro %}
+
+{% macro title(main, subtitle=None) -%}
+    <div class="p-3">
+        <h2 class="h2 text-center">
+            {{ main }}
+        </h2>
+        {% if subtitle %}
+            <h5 class="h5 text-center">
+                {{ subtitle }}
+            </h5>
+        {% endif %}
+    </div>
+{%- endmacro %}

@@ -1,0 +1,10 @@
+{% from 'macros/base.html' import link, icon %}
+
+{% macro drawer_item(href, fa_icon_name, text) %}
+    {% call link(href) %}
+        <div class="d-flex justify-content-left">
+            {{ icon(fa_icon_name ~ ' fa-2x nav-icon align-middle') }}<span
+                class="align-middle nav-item"><b>{{ text }}</b></span>
+        </div>
+    {% endcall %}
+{% endmacro %}

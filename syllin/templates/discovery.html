@@ -1,13 +1,10 @@
-{% extends 'nav.html' %}
-{% block body %}
-    <h2>Discovery</h2>
-    IT TRULY IS A WORLD OF DISCOVERY!!!<br>
-    <span><a href="/">Discover All</a> <a href="/a">Discover Albums</a> <a href="/s">Discover Songs</a></span><br>
-    {% block discovery_feed %}
-        <ul>
-            {% for song in songs %}
-                <li><a href="/s/{{ song.id }}">{{ song.title }} by {{ song.album.artist.email }} - Album: {{ song.album.title }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endblock %}
+{% extends 'layout.html' %}
+
+{% import 'macros/base.html' as macros %}
+{% import 'macros/discovery.html' as discovery %}
+
+{% block content %}
+    {{ macros.title('Discovery') }}
+    {{ discovery.tags(tags) }}
+    {{ discovery.feed(songs) }}
 {% endblock %}
