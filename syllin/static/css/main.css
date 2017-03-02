@@ -10,7 +10,9 @@
   -webkit-text-size-adjust: none; }
 
 html {
-  height: 100%; }
+    height: 100%;
+    box-sizing: border-box;
+}
   html body.container-fluid {
     padding-left: 0;
     padding-right: 0;
@@ -28,7 +30,8 @@ html {
 #nav-bar {
   background-color: #fc575e;
   position: absolute;
-  z-index: 10000; }
+    z-index: 8000;
+}
   #nav-bar .nav-link {
     padding: 0;
       padding-left: 20px;
