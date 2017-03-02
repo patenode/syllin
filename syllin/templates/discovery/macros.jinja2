@@ -1,26 +1,4 @@
-{% set feed_pattern = cycler(1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0) %}
-{% set sizing_classes = ['col-4', 'col-8'] %}
-
-{% macro feed(songs) -%}
-    <!--{{ feed_pattern.reset() }}-->
-    <div class="container-fluid">
-        <div id="discovery-feed" class="grid">
-            <div class="grid-sizer {{ sizing_classes[0] }}"></div>
-            {% for song in songs %}
-                {% if feed_pattern.next() == 1 %}
-                    {% set classes = "grid-item--width-2 " + sizing_classes[1] %}
-                {% else %}
-                    {% set classes = sizing_classes[0] %}
-                {% endif %}
-                <div class="grid-item {{ classes }}">
-                    <div class="grid-item-contents">
-                        <img class="album-art" src="/static/img/placeholder_img.gif">
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-{%- endmacro %}
+{% from 'base/macros.jinja2' import link %}
 
 {% macro badge(text, suffix=None) -%}
     <span class="badge{% if suffix %} badge-{{ suffix }}{% endif %}">{{ text }}</span>
@@ -39,4 +17,39 @@
             {% endfor %}
         </div>
     {% endif %}
+{%- endmacro %}
+
+{# Cycler creates the pattern for the feed block sizes, and sizing_classes can be adjusted to hold
+multiple different reponsive styles.#}
+{% set feed_pattern = cycler(1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0) %}
+{% set sizing_classes = ['col-4', 'col-8'] %}
+
+{% macro feed(songs) -%}
+    <!--{{ feed_pattern.reset() }}-->
+    <div id="discovery-feed" class="grid">
+        <div class="grid-sizer {{ sizing_classes[0] }}"></div>
+        {% for song in songs %}
+            {% call grid_item() %}
+                {% call link(url_for('song.view', song_id=song.id)) %}
+                    <img class="album-art" src="/static/img/placeholder_img.gif">
+                {% endcall %}
+            {% endcall %}
+        {% endfor %}
+    </div>
+{%- endmacro %}
+
+{% macro generate_size_class() -%}
+    {% if feed_pattern.next() == 1 %}
+        grid-item--width-2 {{ sizing_classes[1] }}
+    {% else %}
+        {{ sizing_classes[0] }}
+    {% endif %}
+{%- endmacro %}
+
+{% macro grid_item() -%}
+    <div class="grid-item {{ generate_size_class() }}">
+        <div class="grid-item-contents">
+            {{ caller() }}
+        </div>
+    </div>
 {%- endmacro %}
