@@ -6,7 +6,7 @@ from syllin import application
 if __name__ == "__main__":
     # This allows for better reboot behavior when Jinja2 templates are being edited (by default, not all edits trigger
     # a server reboot)
-    extra_dirs = ['syllin/templates/', ]
+    extra_dirs = ['syllin/templates', 'syllin/static']
     extra_files = extra_dirs[:]
     for extra_dir in extra_dirs:
         for dirname, dirs, files in walk(extra_dir):
