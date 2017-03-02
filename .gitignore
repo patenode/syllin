@@ -1,1 +1,1 @@
-*.pyc**/*.pycsyllin/*.pyc# Elastic Beanstalk Files.elasticbeanstalk/*!.elasticbeanstalk/*.cfg.yml!.elasticbeanstalk/*.global.yml# Pycharm files.idea/*
+*.pyc**/*.pycsyllin/*.pyc# Elastic Beanstalk Files.elasticbeanstalk/*!.elasticbeanstalk/*.cfg.yml!.elasticbeanstalk/*.global.yml# Pycharm files.idea/*

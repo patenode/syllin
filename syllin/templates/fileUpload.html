@@ -1,4 +1,4 @@
-<input type="file" id="file_input"/> <!-- OnChange method in fileUpload.js -->
+<input type="file" id="fileupload"/> <!-- OnChange method in fileUpload.js -->
 <p id="status">Please select a song</p>
 
 <form method="POST" action="/submit_form">
@@ -6,4 +6,23 @@
   <input type="text" id="song_name" name="song_name" placeholder="Name of Song">
   <input type="submit" value="Add Song">
 </form>
-<script type="text/javascript" src="{{url_for('static', filename='js/fileUpload.js')}}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/vendor/jquery.ui.widget.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery.iframe-transport.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery.fileupload.js')}}"></script>
+
+<script>
+$(function () {
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        add: function (e, data) {
+          alert("Help");
+            $.each(data.result.files, function (index, file) {
+                $('<p/>').text(file.name).appendTo(document.body);
+            });
+        }
+    });
+});
+</script>
+
+

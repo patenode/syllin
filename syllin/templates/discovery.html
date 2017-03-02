@@ -1,21 +1,4 @@
-<<<<<<< HEAD
-{% extends 'nav.html' %}
-{% block body %}
-    <h2>Discovery</h2>
-    IT TRULY IS A WORLD OF DISCOVERY!!!<br>
-    <span><a href="/">Discover All</a> <a href="/a">Discover Albums</a> <a href="/s">Discover Songs</a></span><br>
-    {% block discovery_feed %}
-        <ul>
-            {% for song in songs %}
-                {% if song.album %}
-                <li><a href="/s/{{ song.id }}">{{ song.title }} by {{ song.artist.email }} - Albumy: {{ song.album.title }}</a></li>
-                {% else %}
-                <li><a href="/s/{{ song.id }}">{{ song.title }} by {{ song.artist.email }}</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    {% endblock %}
-=======
+
 {% extends 'layout.html' %}
 
 {% import 'macros/base.html' as macros %}
@@ -25,5 +8,4 @@
     {{ macros.title('Discovery') }}
     {{ discovery.tags(tags) }}
     {{ discovery.feed(songs) }}
->>>>>>> ef3150a7bf2d1bef9c659c7f3dfcd962eb274e9e
 {% endblock %}
