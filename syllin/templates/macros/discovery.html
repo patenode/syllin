@@ -1,0 +1,92 @@
+{#{% macro col_block(song) -%}#}
+{#    <div class="col col-4 square bg-success">#}
+{#    {{ song.title|truncate(16) }}#}
+{#    </div>#}
+{#{%- endmacro %}#}
+{##}
+{#{% macro row_block(song) -%}#}
+{#    <div class="row square bg-success">#}
+{#    {{ song.title|truncate(16) }}#}
+{#    </div>#}
+{#{%- endmacro %}#}
+{##}
+{#{% macro big_block(song) -%}#}
+{#    <div class="col col-8 big-square bg-primary">#}
+{#    {{ song.title|truncate(16) }}#}
+{#    </div>#}
+{#{%- endmacro %}#}
+{##}
+{#{% macro block_stack(song_1, song_2) -%}#}
+{#    <div class="col-4 square-stack d-flex flex-column justify-content-between">#}
+{#        {{ col_block(song_1) }}#}
+{#        {{ col_block(song_2) }}#}
+{#    </div>#}
+{#{%- endmacro %}#}
+{##}
+{#{% macro big_block_row(dir, row) -%}#}
+{#    <div class="d-flex">#}
+{#        {% if dir == 'left' %}#}
+{#            {{ big_block(row[0]) }}#}
+{#            {{ block_stack(row[1], row[2]) }}#}
+{#        {% elif dir == 'right' %}#}
+{#            {{ block_stack(row[0], row[1]) }}#}
+{#            {{ big_block(row[2]) }}#}
+{#        {% endif %}#}
+{#    </div>#}
+{#{%- endmacro %}#}
+{##}
+{#{% macro straight_row(row) -%}#}
+{#    <div class="d-flex">#}
+{#        {% for song in row %}#}
+{#            {% if song is defined %}#}
+{#                {{ col_block(song) }}#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#{%- endmacro %}#}
+{##}
+{#{% macro discovery_feed(songs) -%}#}
+{#    {% if songs %}#}
+{#        <div class="d-flex flex-column p-2">#}
+{#            {% set row_class = cycler('big', 'regular') %}#}
+{#            {% set bb_class = cycler('left', 'right') %}#}
+{#            {% for row in songs|batch(3, None) %}#}
+{#                {% set rc = row_class.next() %}#}
+{#                {% if rc == 'big' %}#}
+{#                    {{ big_block_row(bb_class.next(), row) }}#}
+{#                {% elif rc == 'regular' %}#}
+{#                    {{ straight_row(row) }}#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% endif %}#}
+{#{%- endmacro %}#}
+
+{% macro feed(songs) -%}
+    {% if songs is defined %}
+        {% for three_songs in songs|batch(3) %}
+            Song Row {{ loop.index }}:
+            {% for song in three_songs %}{{ song.title|truncate(16) }}{% if not loop.last %}, {% endif %}{% endfor %}
+            <br>
+        {% endfor %}
+    {% endif %}
+{%- endmacro %}
+
+{% macro badge(text, suffix=None) -%}
+    <span class="badge{% if suffix %} badge-{{ suffix }}{% endif %}">{{ text }}</span>
+{%- endmacro %}
+
+{% macro tags(tags) -%}
+    {% if tags %}
+        <div class="d-flex p-2">
+            {% for tag in tags %}
+                {% if tag[1] %}
+                    {% set badge_style = 'active' %}
+                {% else %}
+                    {% set badge_style = 'inactive' %}
+                {% endif %}
+                {{ badge(tag[0], badge_style) }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{%- endmacro %}

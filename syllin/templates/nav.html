@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Syllin</title>
-</head>
-<body>
-<h1>Welcome, travelers, to Syllin.</h1>
-<details><summary>Hamburger Button</summary>
-<a href="/">Discovery</a><br>
-<a href="/u/{{ user_id }}/library">Library</a><br>
-<a href="/u/{{ user_id }}/statistics">Stats</a><br>
-<a href="/u/{{ user_id }}">User Profile</a><br>
-<a href="/settings">Settings</a><br>
-</details>
-{% block body %}
-{% endblock %}
-</body>
-</html>
+<nav class="nav justify-content-between fixed-top">
+    <a class="nav-link" href="#nav-drawer" data-toggle="drawer"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    <div class="nav-link"><b>Syllin</b></div>
+    <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+</nav>
