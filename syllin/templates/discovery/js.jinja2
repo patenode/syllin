@@ -1,21 +1,8 @@
 <!-- Masonry (depends on jQuery) -->
-<script src="/static/js/masonry.pkgd.min.js"></script>
+<script src="/static/js/discovery/masonry.pkgd.min.js"></script>
 
 <!-- imagesLoaded (depends on jQuery) -->
-<script src="/static/js/imagesloaded.pkgd.min.js"></script>
+<script src="/static/js/discovery/imagesloaded.pkgd.min.js"></script>
 
-<!-- Initialize Masonry with imagesLoaded for Discovery Feed -->
-<script>
-    var $grid = $('.grid').masonry({
-        // set itemSelector so .grid-sizer is not used in layout
-        itemSelector: '.grid-item',
-        // use element for option
-        columnWidth: '.grid-sizer',
-        // Set rowHeight to the calculated pixel width of the columns
-        percentPosition: true
-    });
-    // layout Masonry after each image loads
-    $grid.imagesLoaded().progress(function () {
-        $grid.masonry('layout');
-    });
-</script>
+<!-- Initialize Masonry + imagesLoaded to prepare the Discovery Feed -->
+<script src="/static/js/discovery/init_grid.min.js"></script>
