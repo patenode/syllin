@@ -1,4 +1,4 @@
-{% extends 'nav.html' %}
+{% extends 'layout.html' %}
 {% import 'macros.html' as macros %}
 {% block body %}
 	<h2>"{{ song.title }}" by {{ macros.user_link(song.artist.id, song.artist.email) }}</h2><br>
@@ -7,3 +7,4 @@
 	{% endif %}
 
 	{{ lipsum(2) }}
+{% endblock %}

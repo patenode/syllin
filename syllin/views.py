@@ -28,7 +28,7 @@ def index():
     return render_template('discovery.html', user_id=current_user.id, songs=q, tags=t)
 
 
-@application.route('/<tag>')
+@application.route('/<tag>')    
 def link(tag):
     return "Processing the tag '{tag}'...".format(tag=tag)
 
@@ -48,7 +48,7 @@ def promoteUsers():
         verifyArtist(user)
      
     # Get non-artists   
-    users = User.query.filter(~User.roles.any(Role.name=='artist'))
+    users = User.query.all() #filter(~User.roles.any(Role.name=='artist'))
 
     return dict(users=users)#dict(users=users)
 
@@ -64,8 +64,10 @@ def verifyArtist(user):
 def fileUpload():
     return dict()
 
+## API
+
 @application.route('/sign_s3/')
-@roles_accepted('admin', 'artist')
+@login_required
 def sign_s3():
     S3_BUCKET = os.environ.get('S3_BUCKET')
 
@@ -96,7 +98,7 @@ def sign_s3():
 @roles_accepted('admin', 'artist')
 def submit_form():
     song_name = request.form["song_name"]
-    song_url = request.form["song_url"]
+    song_url = request.form["s3_data_url"]
 
     song = Song(title=song_name, resource_uri=song_url, artist=current_user)
     db.session.add(song)
@@ -107,3 +109,21 @@ def submit_form():
     return dict(fileUrl=song_url)
 
 
+@application.route("/ping", methods=["POST"])
+def ping():
+    return "Pingy!"
+
+@application.route("/update-profile", methods=["POST"])
+@login_required
+def update_profile():
+    
+    user = User.query.get(current_user.id)
+
+    user.name = request.form['name']
+    user.bio = request.form['bio']
+    user.profile_pic = request.form['s3_data_url']
+    user.favorite_artists = request.form['favorite-artists']
+
+    db.session.add(user)
+    db.session.commit();
+    return "NOPE"

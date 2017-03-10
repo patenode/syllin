@@ -1,10 +1,10 @@
-{% extends 'nav.html' %}
-{% import 'macros.html' as macros %}
-{% block body %}
+{% extends 'layout.html' %}
+{% block content %}
 
 <h2>Verify Artists</h2>
 {% for user in users %}
-    <li>{{ macros.user_link(user.id, user.email) }} 
+    <li>{{ user.email }} 
+    {{ user.name }}
     	<form method="post" action="{{url_for('promoteUsers')}}">
     		
 	    	<input type="hidden" name="user" value="{{user.id}}">

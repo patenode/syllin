@@ -16,20 +16,20 @@ class Role(db.Model, RoleMixin):
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text())
+    profile_pic = db.Column(db.Text()) # s3 url
+    bio = db.Column(db.Text())
+    favorite_artists = db.Column(db.Text())
     registered_artist = db.Column(db.Boolean)
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
-    confirmed_at = db.Column(db.DateTime())
+    confirmed_at = db.Column(db.DateTime()) # Used for (Member Since)
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))
 
     def __repr__(self):
         return "User {} : {} : {}".format(self.id, self.email, self.password)
-        # purchases = db.relationship("Purchase",
-        #                 primaryjoin="and_(User.id==Purchase.buyer_id, "
-        #                     "True)")
-        # sells = db.relationship("Purchase")
 
 
 class Album(db.Model):
@@ -39,6 +39,7 @@ class Album(db.Model):
     songs = db.relationship("Song", back_populates="album")
     artist_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     artist = db.relationship("User", backref=db.backref('albums', lazy='dynamic'))
+    cover_art = db.Column(db.Text()) # s3 url
 
 
 class Song(db.Model):

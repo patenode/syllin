@@ -39,3 +39,4 @@ application.config['SECURITY_REGISTERABLE'] = True
 application.config['SECURITY_CONFIRM_ERROR_VIEW'] = "/login"
 application.config['SECURITY_UNAUTHORIZED_VIEW'] = '/login' 
 application.config['SECURITY_POST_REGISTER_VIEW'] = '/' 
+application.config['SECURITY_REGISTER_USER_TEMPLATE'] = 'register-user.html'
