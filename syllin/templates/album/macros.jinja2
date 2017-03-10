@@ -1,0 +1,18 @@
+{% from 'base/macros.jinja2' import badge %}
+
+{% macro art(url) %}
+    <img class="d-block mx-auto col-10 p-2" src={{ url }}>
+{% endmacro %}
+
+{% macro songs(song_list) %}
+    <ol id="album-song-list" class="list-group w-100 border-0">
+        {% for song in song_list %}
+            <li class="list-group-item p-1">
+                <div class="col-1">{{ loop.index }}</div>
+                <div class="col-6">{{ song.title }}</div>
+                <div class="col-2">1:23</div>
+                <div class="col-3">{{ badge('$.99', 'active') }}</div>
+            </li>
+        {% endfor %}
+    </ol>
+{% endmacro %}

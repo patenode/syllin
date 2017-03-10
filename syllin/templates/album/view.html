@@ -1,16 +1,13 @@
 {% extends 'base/layout.jinja2' %}
 
 {% import 'base/macros.jinja2' as macros %}
+{% import 'album/macros.jinja2' as album %}
 
-{% block title %}Album "{{ album.title }}"{% endblock %}
+{% block title %}Album "{{ current_album.title }}"{% endblock %}
 
 {% block content %}
-    {{ macros.title(album.title, album.artist.email) }}
-    <!-- TODO: Album View Page -->
-    This is where the album view belongs.
-    <ol>
-        {% for song in album.songs %}
-            <li>{{ song.title }}</li>
-        {% endfor %}
-    </ol>
+    {{ macros.title(current_album.title, current_album.artist.email) }}
+    {# TODO: Replace this with actual album art once we pull in the AWS branch #}
+    {{ album.art('/static/img/placeholder_img.gif') }}
+    {{ album.songs(current_album.songs) }}
 {% endblock %}

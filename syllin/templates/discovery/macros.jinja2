@@ -1,8 +1,4 @@
-{% from 'base/macros.jinja2' import link %}
-
-{% macro badge(text, suffix=None) -%}
-    <span class="badge{% if suffix %} badge-{{ suffix }}{% endif %}">{{ text }}</span>
-{%- endmacro %}
+{% from 'base/macros.jinja2' import link, badge %}
 
 {% macro tags(tags) -%}
     {% if tags %}

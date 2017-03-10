@@ -9,6 +9,40 @@
   transition: 0.25s ease-in-out;
   -webkit-text-size-adjust: none; }
 
+#album-song-list li {
+    border-left: 0 none;
+    border-right: 0 none;
+    border-bottom: 1px solid;
+}
+
+.badge {
+    margin-right: 5px;
+    font-size: 10pt;
+}
+
+.badge-active {
+    background-color: #fc575e;
+}
+
+.badge-inactive {
+    color: #4b4b4b;
+    background-color: #f0f1f5;
+}
+
+.grid {
+    width: 100%;
+}
+
+.grid-item {
+    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.grid-item .grid-item-contents img {
+    width: 100%;
+}
+
 html {
     height: 100%;
     box-sizing: border-box;
@@ -66,26 +100,5 @@ html {
       font-size: 13pt; }
   .drawer-contents .drawer-footer a {
     color: #ffffff; }
-
-.badge {
-  margin-right: 5px;
-  font-size: 10pt; }
-
-.badge-active {
-  background-color: #fc575e; }
-
-.badge-inactive {
-  color: #4b4b4b;
-  background-color: #f0f1f5; }
-
-.grid {
-  width: 100%; }
-
-.grid-item {
-  padding: 0;
-    padding-left: 0;
-    padding-right: 0; }
-  .grid-item .grid-item-contents img {
-    width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

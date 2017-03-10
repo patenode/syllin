@@ -14,14 +14,14 @@ def get_album(id):
 
 @views.route('/<int:album_id>')
 def view(album_id):
-    return render_template('album/view.html', album=get_album(album_id))
+    return render_template('album/view.html', current_album=get_album(album_id))
 
 
 @views.route('/<int:album_id>/buy', methods=['GET', 'POST'])
 def buy(album_id):
-    return render_template('album/buy.html', album=get_album(album_id))
+    return render_template('album/buy.html', current_album=get_album(album_id))
 
 
 @views.route('/<int:album_id>/thanks')
 def purchased(album_id):
-    return render_template('album/thanks.html', album=get_album(album_id))
+    return render_template('album/thanks.html', current_album=get_album(album_id))
