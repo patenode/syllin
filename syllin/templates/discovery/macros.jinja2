@@ -2,7 +2,7 @@
 
 {% macro tags(tags) -%}
     {% if tags %}
-        <div class="d-flex p-2">
+        <div class="d-flex p-2 pb-4">
             {% for tag in tags %}
                 {% if tag[1] %}
                     {% set badge_style = 'active' %}

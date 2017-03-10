@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 from flask import redirect
 from flask import url_for
 
-from syllin.models import User
+from syllin.models import User, Song
 
 views = Blueprint(name='user',
                   import_name=__name__,
@@ -39,14 +39,32 @@ def profile(user_id):
     return render_template('user/profile.html', user=get_user(user_id))
 
 
+def get_sorting_options():
+    return [
+        ['Newest', True],
+        ['Most Popular', False],
+        ['Album', False],
+        ['Song', False],
+        ['Artist', False]
+    ]
+
+
 @views.route('/library')
 def my_library():
     return library(current_user.id)
 
 
+# TODO: Replace with actual song query
+def get_songs():
+    return Song.query.all()
+
+
 @views.route('/<user_id>/library')
 def library(user_id):
-    return render_template('user/library.html', user=get_user(user_id))
+    return render_template('user/library.html',
+                           user=get_user(user_id),
+                           sorting_options=get_sorting_options(),
+                           songs=get_songs())
 
 
 @views.route('/stats')

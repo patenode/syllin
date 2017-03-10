@@ -1,104 +1,58 @@
-.animate {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  /* adds animation for all transitions */
-  -webkit-transition: 0.25s ease-in-out;
-  -moz-transition: 0.25s ease-in-out;
-  -o-transition: 0.25s ease-in-out;
-  transition: 0.25s ease-in-out;
-  -webkit-text-size-adjust: none; }
+/*
+Error: File to import not found or unreadable: partials/library.
+        on line 8 of main.sass
 
-#album-song-list li {
-    border-left: 0 none;
-    border-right: 0 none;
-    border-bottom: 1px solid;
+3: 
+4: @import "partials/album"
+5: @import 'partials/badges'
+6: @import 'partials/discovery'
+7: @import 'partials/layout'
+8: @import 'partials/library'
+9: @import 'partials/nav'
+
+Backtrace:
+main.sass:8
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:45:in `import'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:28:in `imported_file'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:37:in `css_import?'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:313:in `visit_import'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `block in with_base'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:115:in `with_frame'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `with_base'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `map'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:159:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/root_node.rb:36:in `css_tree'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:298:in `render_with_sourcemap'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `each'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin.rb:82:in `update_stylesheets'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:52:in `parse'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:19:in `parse!'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+    white-space: pre;
+    font-family: monospace;
+    content: "Error: File to import not found or unreadable: partials/library.\A         on line 8 of main.sass\A \A 3: \A 4: @import \"partials/album\"\A 5: @import 'partials/badges'\A 6: @import 'partials/discovery'\A 7: @import 'partials/layout'\A 8: @import 'partials/library'\A 9: @import 'partials/nav'";
 }
-
-.badge {
-    margin-right: 5px;
-    font-size: 10pt;
-}
-
-.badge-active {
-    background-color: #fc575e;
-}
-
-.badge-inactive {
-    color: #4b4b4b;
-    background-color: #f0f1f5;
-}
-
-.grid {
-    width: 100%;
-}
-
-.grid-item {
-    padding: 0;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.grid-item .grid-item-contents img {
-    width: 100%;
-}
-
-html {
-    height: 100%;
-    box-sizing: border-box;
-}
-  html body.container-fluid {
-    padding-left: 0;
-    padding-right: 0;
-    height: 100%; }
-
-#viewport {
-  height: 100%; }
-
-#content {
-  padding-top: 46px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: scroll; }
-
-#nav-bar {
-  background-color: #fc575e;
-  position: absolute;
-    z-index: 8000;
-}
-  #nav-bar .nav-link {
-    padding: 0;
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    color: #ffffff;
-    font-size: 18pt;
-    font-family: "Lobster Two", cursive; }
-
-.drawer-contents {
-  padding-top: 56px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #e33e4b; }
-  .drawer-contents a {
-    margin-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px; }
-    .drawer-contents a:focus {
-      background-color: #fc575e; }
-    .drawer-contents a:hover {
-      background-color: #fc575e;
-      text-decoration: none; }
-    .drawer-contents a .nav-icon {
-      color: #ffffff; }
-    .drawer-contents a .nav-item {
-      color: #ffffff;
-      padding-left: 15px;
-      font-size: 13pt; }
-  .drawer-contents .drawer-footer a {
-    color: #ffffff; }
-
-/*# sourceMappingURL=main.css.map */

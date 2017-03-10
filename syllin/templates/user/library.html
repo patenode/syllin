@@ -1,9 +1,10 @@
 {% extends 'base/layout.jinja2' %}
 
 {% import 'base/macros.jinja2' as macros %}
+{% import 'library/macros.jinja2' as library %}
 
 {% block content %}
-    {{ macros.title(user.email ~ "'s Library") }}
-    <!-- TODO: User Library Page -->
-    This is where a user's library belongs.
+    {{ macros.title("Library") }}
+    {{ library.sorting_tags(sorting_options) }}
+    {{ library.song_list(songs) }}
 {% endblock %}
