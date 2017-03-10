@@ -20,3 +20,9 @@
         {% endif %}
     </div>
 {%- endmacro %}
+
+{% macro library_link(href, text) -%}
+    <a href="{{ href }}">
+        {{ text }}
+    </a>
+{%- endmacro %}

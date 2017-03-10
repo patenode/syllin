@@ -51,23 +51,22 @@ def roles():
     if not Role.query.first():
         user_datastore.create_role(name="artist")
         user_datastore.create_role(name='admin')
-        user_datastore.create_user(email='admin@example.com',
+    
+
+    user_datastore.create_user(email='admin@example.com',
                                    password=encrypt_password('adminpassword'), roles=['admin'])
 
 
 def setupDatabaseForDebug():
     
-    if not User.query.first():
-        roles()
-        user_datastore.create_user(email='matt@nobien.net', password=encrypt_password('password'))
-        user_datastore.create_user(email='joosh@nobien.net',password=encrypt_password('password'))
-
+    
+    roles()
 
     if not Album.query.first():
         db.session.add(Album(title="The Pink Album", artist=User.query.get(2)))
 
 
-    if len(Song.query.all()) < 10:
+    if len(Song.query.all()) < 3:
         addSongs(["Frumpy r", "!!Curmudgeon", "Fuck ^^^^^^^me briskly"], Album.query.get(1))
         buySong(1, 2, 1)
 
