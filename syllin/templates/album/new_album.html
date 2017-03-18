@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% import 'macros/base.html' as macros %}
+{% block content %}
+<form method="POST" action="/post_new_album">
+ 	<div> 
+	 	Album cover art
+	 	<img id="preview">
+	    <input type="file"  id="fileupload" text="Hello" multiple /> 
+	</div>
+	<div>
+	    Album Name : <input type="text" name="album_title">
+	    <input type="hidden" id="s3_data_url" name="s3_data_url" onchange="changeImage()">
+    </div>
+    <input type="submit" name="Make Album">
+</form>
+
+    
+{% endblock %}
+{% block late_js_imports %}
+	<script type="text/javascript" src="{{url_for('static', filename='js/fileUpload.js')}}"></script> 
+{% endblock %}

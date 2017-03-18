@@ -1,11 +1,14 @@
 import boto3, os, json
 from flask import render_template, request
-
+from flask_security import roles_accepted, login_required
+from flask_security.core import current_user
 from syllin import user, song, album
+from syllin.security import user_datastore
 from syllin.app import application
-from syllin.user import current_user
-from syllin.models import Song
+from syllin.db_model import db
+from syllin.models import Song, User, Role, Album
 from syllin.templated import templated
+from syllin.forms.forms import SongForm
 
 application.register_blueprint(user.views)
 application.register_blueprint(album.views)
@@ -13,6 +16,7 @@ application.register_blueprint(song.views)
 
 
 @application.route('/')
+@login_required
 def index():
     q = Song.query.all()
 
@@ -20,11 +24,10 @@ def index():
     from random import getrandbits
     rand_bool = lambda: bool(getrandbits(1))
     t = [('Genre {i}'.format(i=i), rand_bool()) for i in range(5)]
-
     return render_template('discovery.html', user=current_user, songs=q, tags=t)
 
 
-@application.route('/<tag>')
+@application.route('/<tag>')    
 def link(tag):
     return "Processing the tag '{tag}'...".format(tag=tag)
 
@@ -33,15 +36,44 @@ def link(tag):
 def settings():
     return render_template('settings.html', user=current_user)
 
+@application.route('/promote', methods=["POST", "GET"])
+@roles_accepted('admin')
+@templated('promote.html')
+def promoteUsers():
+    # Post role    
+    user_id = request.form.get("user", None)
+    if user_id:
+        user = User.query.get(user_id)
+        verifyArtist(user)
+     
+    # Get non-artists   
+    users = User.query.all() #filter(~User.roles.any(Role.name=='artist'))
 
-# possible problem with forward slash in app.route?
-@application.route("/file_upload/")
+    return dict(users=users)#dict(users=users)
+
+
+def verifyArtist(user):
+    user_datastore.add_role_to_user(user, user_datastore.find_role('artist'))
+    db.session.commit()
+
+@application.route("/file_upload")
 @templated("fileUpload.html")
+@roles_accepted('admin', 'artist')
 def fileUpload():
+    form = SongForm()
+    return dict(form=form)
+
+@application.route("/newAlbum")
+@templated("album/new_album.html")
+@login_required
+def albumUpload():
     return dict()
 
 
+## API
+
 @application.route('/sign_s3/')
+@login_required
 def sign_s3():
     S3_BUCKET = os.environ.get('S3_BUCKET')
 
@@ -67,14 +99,54 @@ def sign_s3():
     })
 
 
-@application.route("/submit_form/", methods=["POST"])
+@application.route("/submit_form", methods=["POST"])
 @templated('printSelectedFile.html')
+@roles_accepted('admin', 'artist')
 def submit_form():
-    username = request.form["username"]
-    full_name = request.form["full-name"]
-    avatar_url = request.form["avatar-url"]
+    song_name = request.form["title"]
+    song_url = request.form["s3_data_url"]
 
+    song = Song(title=song_name, resource_uri=song_url, artist=current_user)
+    db.session.add(song)
+    db.session.commit();
     # update_account(username, full_name, avatar_url) ##TODO -- Print the url, just to prove that it's coming through (in html)
 
 
-    return dict(fileUrl=avatar_url)
+    return dict(fileUrl=song_url)
+
+@application.route("/post_new_album", methods=["POST"])
+@roles_accepted('admin', 'artist')
+def post_new_album():
+    album_title = request.form["album_title"]
+    album_cover_url = request.form["s3_data_url"]
+
+    song = Album(title=album_title, cover_art=album_cover_url, artist_id=3)
+    db.session.add(song)
+    db.session.commit();
+    # update_account(username, full_name, avatar_url) ##TODO -- Print the url, just to prove that it's coming through (in html)
+
+
+    return "BOOTY"
+
+
+
+@application.route("/ping", methods=["POST"])
+def ping():
+    return "Pingy!"
+
+@application.route("/update-profile", methods=["POST"])
+@login_required
+def update_profile():
+    
+    user = User.query.get(current_user.id)
+
+    user.name = request.form['name']
+    user.bio = request.form['bio']
+    if (request.form['s3_data_url']):
+        user.profile_pic = request.form['s3_data_url']
+
+    user.favorite_artists = request.form['favorite-artists']
+
+    db.session.add(user)
+    db.session.commit();
+    return "NOPE"
