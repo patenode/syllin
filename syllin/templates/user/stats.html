@@ -1,0 +1,10 @@
+{% extends 'base/layout.jinja2' %}
+
+{% import 'base/macros.jinja2' as macros %}
+
+{% block content %}
+    {{ macros.title(user.email ~ "'s Statistics", "If you can't read Latin, you aren't smart enough to understand Statistics") }}
+    <!-- TODO: User Statistics Page -->
+    This is where user statistics belong.
+    {{ lipsum(5) }}
+{% endblock %}

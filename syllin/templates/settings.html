@@ -1,5 +1,11 @@
-{% extends 'layout.html' %}
+{% extends 'base/layout.jinja2' %}
+
+{% import 'base/macros.jinja2' as macros %}
+
+{% block title %}Settings{% endblock %}
+
 {% block content %}
-    <h2>{{ user_id }}'s Settings</h2>
-    {{ lipsum(15, True, 12, 20) }}
+    {{ macros.title(user.email ~ "'s Settings") }}
+    <!-- TODO: User Settings Page -->
+    This is where user settings belong.
 {% endblock %}

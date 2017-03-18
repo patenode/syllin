@@ -1,0 +1,96 @@
+{% from 'base/macros.jinja2' import badge, icon %}
+
+{% macro sorting_tags(keynames) %}
+    <div class="p-1 w-100">
+        Sort by:<br>
+        <div class="p-1 d-flex">
+            {% for tag in keynames %}
+                {% if tag[1] %}
+                    {% set badge_style = 'active' %}
+                {% else %}
+                    {% set badge_style = 'inactive' %}
+                {% endif %}
+                {{ badge(tag[0], badge_style) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro song_list(songs) %}
+    <div class="pt-3">
+        <div class="row w-100 mx-0" style="border-bottom: 1px solid;">
+            <div class="col-2"></div>
+            <div class="col-6 pl-0">Songs</div>
+            <div class="col-2">Time</div>
+            <div class="col-2">Share</div>
+        </div>
+        {% if songs|length == 0 %}
+            You don't have any songs! Why are you even on this site?
+        {% else %}
+            {% for song in songs %}
+                <div class="row pt-2 pb-1 w-100 mx-0"">
+                <div class="col-2">
+                    <div class="d-flex justify-content-center align-content-center">{{ icon("fa-play-circle fa-2x") }}</div>
+                </div>
+                <div class="col-6 px-0 d-flex flex-column">
+                    <div class="h6 mt-auto mb-0 text-truncate">{{ song.title }}</div>
+                    <div class="small mb-auto text-truncate">{{ song.album.title }}
+                        | {{ song.album.artist.email }}</div>
+                </div>
+                <div class="col-2">
+                    <span class="align-middle">1:23</span>
+                </div>
+                <div id="ellipsis" class="col-2 d-flex align-content-center justify-content-center">
+                    {{ icon("fa-ellipsis-h fa-2x") }}
+                </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endmacro %}
+<!--
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="card-block">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="card-block">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>-->

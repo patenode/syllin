@@ -23,9 +23,8 @@ def index():
     # Purely for visualization, creates tag list 't'
     from random import getrandbits
     rand_bool = lambda: bool(getrandbits(1))
-    t = ['Genre {}'.format(rand_bool()) for i in range(30)]
-
-    return render_template('discovery.html', user_id=current_user.id, songs=q, tags=t)
+    t = [('Genre {i}'.format(i=i), rand_bool()) for i in range(5)]
+    return render_template('discovery.html', user=current_user, songs=q, tags=t)
 
 
 @application.route('/<tag>')    
@@ -35,7 +34,7 @@ def link(tag):
 
 @application.route('/settings')
 def settings():
-    return render_template('settings.html', user_id=current_user.id)
+    return render_template('settings.html', user=current_user)
 
 @application.route('/promote', methods=["POST", "GET"])
 @roles_accepted('admin')

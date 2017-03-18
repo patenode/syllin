@@ -4,12 +4,16 @@
     </a>
 {%- endmacro %}
 
+{% macro badge(text, suffix=None) -%}
+    <span class="w-100 badge{% if suffix %} badge-{{ suffix }}{% endif %}">{{ text }}</span>
+{%- endmacro %}
+
 {% macro icon(icon_classes) -%}
     <i class="fa {{ icon_classes }}"></i>
 {%- endmacro %}
 
 {% macro title(main, subtitle=None) -%}
-    <div class="p-3">
+    <div class="pt-3">
         <h2 class="h2 text-center">
             {{ main }}
         </h2>

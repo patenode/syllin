@@ -1,11 +1,13 @@
-{% extends 'layout.html' %}
-{% import 'macros/base.html' as macros %}
+{% extends 'base/layout.jinja2' %}
+
+{% import 'base/macros.jinja2' as macros %}
+{% import 'album/macros.jinja2' as album %}
+
+{% block title %}Album "{{ current_album.title }}"{% endblock %}
+
 {% block content %}
-    <h2>{{ album.title }} by {{ macros.user_link(album.artist.id, album.artist.email) }}</h2>
-    <ol>
-    {% for song in album.songs %}
-        <li>{{ macros.song_link(song.id, song.title) }}</li>
-    {% endfor %}
-    </ol>
-    {{ lipsum(3) }}
+    {{ macros.title(current_album.title, current_album.artist.email) }}
+    {# TODO: Replace this with actual album art once we pull in the AWS branch #}
+    {{ album.art('/static/img/placeholder_img.gif') }}
+    {{ album.songs(current_album.songs) }}
 {% endblock %}

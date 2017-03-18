@@ -1,0 +1,53 @@
+// Nav Bar
+#nav-bar
+  background-color: $red
+  position: absolute
+  z-index: 8000
+
+  // Nav Link
+  .nav-link
+    padding: 0
+      left: 20px
+      right: 20px
+      top: 5px
+      bottom: 5px
+    color: $white
+    font-size: 18pt
+    font-family: 'Lobster Two', cursive
+
+// Nav Drawer
+.drawer-contents
+  padding:
+    top: 56px
+    left: 10px
+    right: 10px
+  background-color: $dark-red
+
+  // Drawer Link
+  a
+    margin-bottom: 10px
+    padding:
+      right: 10px
+      left: 10px
+      top: 5px
+      bottom: 5px
+    &:focus
+      background-color: $red
+    &:hover
+      background-color: $red
+      text-decoration: none
+
+    // Link Icon
+    .nav-icon
+      color: $white
+
+    // Link Text
+    .nav-item
+      color: $white
+      padding-left: 15px
+      font-size: 13pt
+
+  .drawer-footer
+    // Footer Style
+    a
+      color: $white

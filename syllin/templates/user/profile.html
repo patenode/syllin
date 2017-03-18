@@ -1,31 +1,9 @@
-{% extends 'layout.html' %}
-{% import 'macros/base.html' as macros %}
+{% extends 'base/layout.jinja2' %}
+
+{% import 'base/macros.jinja2' as macros %}
+
 {% block content %}
-    {{ macros.title(user.email) }}
- 
-    <img id="preview" src="{{ user.profile_pic }}">
-    <span class="editHidden" style="display: none;">
-    	<input type="file"  id="fileupload" text="Hello" multiple /> 
-    </span>
-    <button class="editButton">Edit</button>
-    <input type="hidden" id="s3_data_url" name="s3_data_url" onchange="changeImage()">
-
-    <p>Name : <span id="name" class="editText">{{ user.name }}</span></p>
-    <p>Bio : <span id="bio" class="editText">{{ user.bio }}</span></p>
-    <p>Favorite Artists : <span id="favorite-artists" class="editText">{{ user.favorite_artists }}</span></p>
-    
-    <p> 
-	    Albums:
-	    <ul>
-	        {% for album in user.albums %}
-	            <li>{{  album.title }}</li>
-	        {% endfor %}
-	    </ul>
-    </p>
-    {{ macros.library_link(user.id, "See my library") }}
-
-{% endblock %}
-{% block late_js_imports %}
-	<script type="text/javascript" src="{{url_for('static', filename='js/editable.js')}}"></script> 
-	<script type="text/javascript" src="{{url_for('static', filename='js/fileUpload.js')}}"></script> 
+    {{ macros.title(user.email ~ "'s Profile", "#" ~ user.id ~ " of the masses") }}
+    <!-- TODO: User Profile Page -->
+    This is where user profiles belong.
 {% endblock %}

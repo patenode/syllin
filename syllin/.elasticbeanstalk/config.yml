@@ -1,0 +1,16 @@
+branch-defaults:
+  default:
+    environment: syllinDb-env
+  master:
+    environment: syllinDb-env-02
+environment-defaults:
+  syllinDb-env:
+    branch: null
+    repository: null
+global:
+  application_name: syllin-db
+  default_ec2_keyname: aws-eb
+  default_platform: 64bit Amazon Linux 2016.09 v2.3.1 running Python 3.4
+  default_region: us-west-2
+  profile: eb-cli
+  sc: git

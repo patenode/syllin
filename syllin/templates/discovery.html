@@ -1,11 +1,19 @@
+{% extends 'base/layout.jinja2' %}
 
-{% extends 'layout.html' %}
+{% import 'base/macros.jinja2' as macros %}
+{% import 'discovery/macros.jinja2' as discovery %}
 
-{% import 'macros/base.html' as macros %}
-{% import 'macros/discovery.html' as discovery %}
+{% block title %}
+    Discovery
+{% endblock %}
 
 {% block content %}
     {{ macros.title('Discovery') }}
     {{ discovery.tags(tags) }}
+    {# TODO: Implement scrolling feature in discovery  #}
     {{ discovery.feed(songs) }}
+{% endblock %}
+
+{% block js %}
+    {% include 'discovery/js.jinja2' %}
 {% endblock %}

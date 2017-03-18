@@ -1,11 +1,12 @@
-{% extends 'layout.html' %}
-{% import 'macros/base.html' as macros %}
-{% block body %}
-REMOVE
-	<h2>"{{ song.title }}" by {{ macros.user_link(song.artist.id, song.artist.email) }}</h2><br>
-	{% if song.album %}
-	    <h3>On the album "{{ macros.album_link(song.album.id, song.album.title) }}"</h3>
-	{% endif %}
+{% extends 'base/layout.jinja2' %}
 
-	{{ lipsum(2) }}
+{% import 'base/macros.jinja2' as macros %}
+
+{% block title %}Song "{{ song.title }}"{% endblock %}
+
+{% block content %}
+    {{ macros.title(song.title, song.album.title ~ " - " ~ song.album.artist.email) }}
+    <!-- TODO: Song View Page -->
+    This is where song views belong.
+    {{ lipsum(2) }}
 {% endblock %}
