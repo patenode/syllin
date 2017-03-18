@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
-{% import 'macros.html' as macros %}
+{% import 'macros/base.html' as macros %}
 {% block body %}
+REMOVE
 	<h2>"{{ song.title }}" by {{ macros.user_link(song.artist.id, song.artist.email) }}</h2><br>
 	{% if song.album %}
 	    <h3>On the album "{{ macros.album_link(song.album.id, song.album.title) }}"</h3>

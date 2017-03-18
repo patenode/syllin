@@ -5,10 +5,10 @@ from flask_security.core import current_user
 from syllin import user, song, album
 from syllin.security import user_datastore
 from syllin.app import application
-#from syllin.user import current_user
 from syllin.db_model import db
-from syllin.models import Song, User, Role
+from syllin.models import Song, User, Role, Album
 from syllin.templated import templated
+from syllin.forms.forms import SongForm
 
 application.register_blueprint(user.views)
 application.register_blueprint(album.views)
@@ -57,12 +57,19 @@ def verifyArtist(user):
     user_datastore.add_role_to_user(user, user_datastore.find_role('artist'))
     db.session.commit()
 
-# possible problem with forward slash in app.route?
 @application.route("/file_upload")
 @templated("fileUpload.html")
 @roles_accepted('admin', 'artist')
 def fileUpload():
+    form = SongForm()
+    return dict(form=form)
+
+@application.route("/newAlbum")
+@templated("album/new_album.html")
+@login_required
+def albumUpload():
     return dict()
+
 
 ## API
 
@@ -97,7 +104,7 @@ def sign_s3():
 @templated('printSelectedFile.html')
 @roles_accepted('admin', 'artist')
 def submit_form():
-    song_name = request.form["song_name"]
+    song_name = request.form["title"]
     song_url = request.form["s3_data_url"]
 
     song = Song(title=song_name, resource_uri=song_url, artist=current_user)
@@ -107,6 +114,21 @@ def submit_form():
 
 
     return dict(fileUrl=song_url)
+
+@application.route("/post_new_album", methods=["POST"])
+@roles_accepted('admin', 'artist')
+def post_new_album():
+    album_title = request.form["album_title"]
+    album_cover_url = request.form["s3_data_url"]
+
+    song = Album(title=album_title, cover_art=album_cover_url, artist_id=3)
+    db.session.add(song)
+    db.session.commit();
+    # update_account(username, full_name, avatar_url) ##TODO -- Print the url, just to prove that it's coming through (in html)
+
+
+    return "BOOTY"
+
 
 
 @application.route("/ping", methods=["POST"])
@@ -121,7 +143,9 @@ def update_profile():
 
     user.name = request.form['name']
     user.bio = request.form['bio']
-    user.profile_pic = request.form['s3_data_url']
+    if (request.form['s3_data_url']):
+        user.profile_pic = request.form['s3_data_url']
+
     user.favorite_artists = request.form['favorite-artists']
 
     db.session.add(user)

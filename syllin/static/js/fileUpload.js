@@ -39,8 +39,12 @@ function uploadFile(file, s3Data, url){
   xhr.onreadystatechange = function() {
     if(xhr.readyState === 4){
       if(xhr.status === 200 || xhr.status === 204){
-        document.getElementById("s3_data_url").value = url;
-        document.getElementById("preview").src = url;
+        if (document.getElementById("s3_data_url")){
+          document.getElementById("s3_data_url").value = url;
+        }
+        if (document.getElementById("preview")){
+          document.getElementById("preview").src = url;
+        }
       }
       else{
         alert("Could not upload file.");

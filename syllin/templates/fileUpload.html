@@ -2,10 +2,13 @@
 <p id="status">Please select a song</p>
 
 <form method="POST" action="/submit_form">
-  <input type="hidden" id="s3_data_url" name="s3_data_url" value="/static/default.png">
-  <input type="text" id="song_name" name="song_name" placeholder="Name of Song">
+	{{ form.hidden_tag() }}
+	<div>
+	        {{ form.title.label }} :
+	        {{ form.title(class="fuuuuuuuck") }}
+	</div>
   <input type="submit" value="Add Song">
+
 </form>
+
 <script type="text/javascript" src="{{url_for('static', filename='js/fileUpload.js')}}"></script> 
-
-
