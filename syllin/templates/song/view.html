@@ -5,10 +5,10 @@
 {% block title %}Song "{{ song.title }}"{% endblock %}
 
 {% block content %}
-	{% if song.album is defined %}
+	{% if song.album  %}
     	{{ macros.title(song.title, song.album.title ~ " - " ~ song.album.artist.email) }}
     {% else %}
-    	{{ macros.title(song.title, song.album.artist.email) }}
+    	{{ macros.title(song.title, song.artist.email) }}
     {% endif %}
     <!-- TODO: Song View Page -->
     This is where song views belong.
