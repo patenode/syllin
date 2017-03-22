@@ -1,5 +1,5 @@
 import boto3, os, json
-from flask import render_template, request
+from flask import render_template, request, redirect
 from flask_security import roles_accepted, login_required
 from flask_security.core import current_user
 from syllin import user, song, album
@@ -8,7 +8,7 @@ from syllin.app import application
 from syllin.db_model import db
 from syllin.models import Song, User, Role, Album
 from syllin.templated import templated
-from syllin.forms.forms import SongForm
+from syllin.forms.forms import SongForm, AlbumForm
 
 application.register_blueprint(user.views)
 application.register_blueprint(album.views)
@@ -63,11 +63,21 @@ def fileUpload():
     form = SongForm()
     return dict(form=form)
 
-@application.route("/newAlbum")
+@application.route("/new_album",methods=["GET", "POST"])
 @templated("album/new_album.html")
 @login_required
 def albumUpload():
-    return dict()
+    form = AlbumForm()
+
+    if form.validate_on_submit():
+        album_title = form.title.data
+        album_cover_url = form.s3_data_url.data
+
+        song = Album(title=album_title, cover_art=album_cover_url, artist_id=3)
+        db.session.add(song)
+        db.session.commit();
+        return redirect('/success')
+    return dict(form=form)
 
 
 ## API
@@ -113,26 +123,6 @@ def submit_form():
 
 
     return dict(fileUrl=song_url)
-
-@application.route("/post_new_album", methods=["POST"])
-@roles_accepted('admin', 'artist')
-def post_new_album():
-    album_title = request.form["album_title"]
-    album_cover_url = request.form["s3_data_url"]
-
-    song = Album(title=album_title, cover_art=album_cover_url, artist_id=3)
-    db.session.add(song)
-    db.session.commit();
-    # update_account(username, full_name, avatar_url) ##TODO -- Print the url, just to prove that it's coming through (in html)
-
-
-    return "BOOTY"
-
-
-
-@application.route("/ping", methods=["POST"])
-def ping():
-    return "Pingy!"
 
 @application.route("/update-profile", methods=["POST"])
 @login_required

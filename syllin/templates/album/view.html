@@ -8,6 +8,10 @@
 {% block content %}
     {{ macros.title(current_album.title, current_album.artist.email) }}
     {# TODO: Replace this with actual album art once we pull in the AWS branch #}
-    {{ album.art('/static/img/placeholder_img.gif') }}
+    {% if current_album.cover_art %}
+    	{{ album.art(current_album.cover_art) }}
+    {% else %}
+    	{{ album.art('/static/img/placeholder_img.gif') }}
+    {% endif %}
     {{ album.songs(current_album.songs) }}
 {% endblock %}

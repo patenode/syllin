@@ -1,17 +1,20 @@
-{% extends 'layout.html' %}
-{% import 'macros/base.html' as macros %}
+{% extends 'base/layout.jinja2' %}
 {% block content %}
-<form method="POST" action="/post_new_album">
+<form method="POST" action="/new_album">
+	{{ form.hidden_tag() }}
+
+	<input type="file" id="fileupload" /> <!-- OnChange method in fileUpload.js -->
+
  	<div> 
 	 	Album cover art
 	 	<img id="preview">
-	    <input type="file"  id="fileupload" text="Hello" multiple /> 
 	</div>
 	<div>
-	    Album Name : <input type="text" name="album_title">
-	    <input type="hidden" id="s3_data_url" name="s3_data_url" onchange="changeImage()">
+	    {{ form.title.label }} : {{ form.title() }}
     </div>
-    <input type="submit" name="Make Album">
+    <div>
+	    {{ form.submit.label }} : {{ form.submit() }}
+    </div>
 </form>
 
     
