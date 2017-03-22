@@ -27,7 +27,11 @@ multiple different reponsive styles.#}
         {% for song in songs %}
             {% call grid_item() %}
                 {% call link(url_for('song.view', song_id=song.id)) %}
-                    <img class="album-art" src="/static/img/placeholder_img.gif">
+                    {% if song.album %}
+                        <img class="album-art" src="{{ song.album.cover_art }}">
+                    {% else %}
+                        <img class="album-art" src="/static/img/placeholder_img.gif">
+                    {% endif %}
                 {% endcall %}
             {% endcall %}
         {% endfor %}

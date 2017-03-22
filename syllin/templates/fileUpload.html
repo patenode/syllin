@@ -1,14 +1,23 @@
-<input type="file" id="fileupload" multiple /> <!-- OnChange method in fileUpload.js -->
-<p id="status">Please select a song</p>
+{% extends 'base/layout.jinja2' %}
 
-<form method="POST" action="/submit_form">
-	{{ form.hidden_tag() }}
-	<div>
-	        {{ form.title.label }} :
-	        {{ form.title(class="fuuuuuuuck") }}
-	</div>
-  <input type="submit" value="Add Song">
+{% block content %}
+	<input type="file" id="fileupload" multiple /> <!-- OnChange method in fileUpload.js -->
+	<p id="status">Please select a song</p>
 
-</form>
+	<form method="POST" action="/file_upload">	{{ form.hidden_tag() }}
+		<div>
+		        {{ form.title.label }} :
+		        {{ form.title() }}
+		</div>
+		<div>
+		        {{ form.album.label }} :
+		        {{ form.album() }}
+		</div>
+	  <input type="submit" value="Add Song">
 
-<script type="text/javascript" src="{{url_for('static', filename='js/fileUpload.js')}}"></script> 
+	</form>
+    
+{% endblock %}
+{% block late_js_imports %}
+	<script type="text/javascript" src="{{url_for('static', filename='js/fileUpload.js')}}"></script> 
+{% endblock %}

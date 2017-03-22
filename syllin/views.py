@@ -56,12 +56,25 @@ def verifyArtist(user):
     user_datastore.add_role_to_user(user, user_datastore.find_role('artist'))
     db.session.commit()
 
-@application.route("/file_upload")
+@application.route("/file_upload", methods=["GET", "POST"])
 @templated("fileUpload.html")
 @roles_accepted('admin', 'artist')
 def fileUpload():
     form = SongForm()
+    form.album.choices = [(a.id, a.title) for a in Album.query.filter(Album.artist == current_user)]
+
+    if form.validate_on_submit():
+        song_name = form.title.data
+        song_url = form.s3_data_url.data
+        album_id = form.album.data
+        
+        song = Song(title=song_name, resource_uri=song_url, artist=current_user, album_id=album_id)
+        db.session.add(song)
+        db.session.commit();
+
     return dict(form=form)
+
+
 
 @application.route("/new_album",methods=["GET", "POST"])
 @templated("album/new_album.html")
