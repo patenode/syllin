@@ -73,10 +73,11 @@ def albumUpload():
         album_title = form.title.data
         album_cover_url = form.s3_data_url.data
 
-        song = Album(title=album_title, cover_art=album_cover_url, artist_id=3)
+        song = Album(title=album_title, cover_art=album_cover_url, artist=current_user)
         db.session.add(song)
         db.session.commit();
         return redirect('/success')
+
     return dict(form=form)
 
 
@@ -120,7 +121,6 @@ def submit_form():
     db.session.add(song)
     db.session.commit();
     # update_account(username, full_name, avatar_url) ##TODO -- Print the url, just to prove that it's coming through (in html)
-
 
     return dict(fileUrl=song_url)
 
