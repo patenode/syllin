@@ -52,8 +52,8 @@ def roles():
         user_datastore.create_role(name="artist")
         user_datastore.create_role(name='admin')
     
-
-    user_datastore.create_user(email='admin@example.com',
+    if not User.query.first():
+        user_datastore.create_user(email='admin@example.com',
                                    password=encrypt_password('adminpassword'), roles=['admin'])
 
 
