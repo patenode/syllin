@@ -7,7 +7,7 @@
     {{ drawer_item(url_for('user.my_library'), 'fa-th-list', 'Library') }}
     {{ drawer_item(url_for('user.my_stats'), 'fa-bar-chart', 'Stats') }}
     {% if current_user.has_role('artist') %}  
-        {{ drawer_item(url_for('user.my_stats'), 'fa-bar-chart', 'Artist Page') }}
+        {{ drawer_item(url_for('user.my_stats'), 'fa-music', 'Artist Page') }}
     {% endif %}
     <div class="drawer-footer locked d-flex justify-content-between">
         {% call link(url_for('user.my_profile')) %}
