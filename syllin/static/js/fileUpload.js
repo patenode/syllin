@@ -5,6 +5,7 @@
     if(!file){
       return alert("No file selected.");
     }
+    document.getElementById("spinner").removeAttribute("hidden");
     getSignedRequest(file);
   };
 })();
@@ -20,6 +21,8 @@ function getSignedRequest(file){
       }
       else{
         alert("Could not get signed URL.");
+        document.getElementById("spinner").setAttribute("hidden", true);
+
       }
     }
   };
@@ -45,11 +48,13 @@ function uploadFile(file, s3Data, url){
         if (document.getElementById("preview")){
           document.getElementById("preview").src = url;
         }
+        document.getElementById("submit").removeAttribute("disabled");
       }
       else{
         alert("Could not upload file.");
       }
    }
+   document.getElementById("spinner").setAttribute("hidden", true);
   };
   xhr.send(postData);
 }

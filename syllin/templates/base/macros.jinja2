@@ -12,6 +12,10 @@
     <i class="fa {{ icon_classes }}"></i>
 {%- endmacro %}
 
+{% macro spinner() -%}
+    <span aria-hidden="true" id="spinner" class="fa fa-spinner fa-spin" hidden></span>
+{%- endmacro %}
+
 {% macro title(main, subtitle=None) -%}
     <div class="pt-3">
         <h2 class="h2 text-center">

@@ -1,9 +1,12 @@
 {% extends 'base/layout.jinja2' %}
+{% from 'base/macros.jinja2' import spinner %}
+
 {% block content %}
 <form method="POST" action="/new_album">
 	{{ form.hidden_tag() }}
 
 	<input type="file" id="fileupload" /> <!-- OnChange method in fileUpload.js -->
+	{{ spinner() }}
 
  	<div> 
 	 	Album cover art
@@ -13,7 +16,7 @@
 	    {{ form.title.label }} : {{ form.title() }}
     </div>
     <div>
-	    {{ form.submit.label }} : {{ form.submit() }}
+	    {{ form.submit.label }} : {{ form.submit(disabled="true") }}
     </div>
 </form>
 
