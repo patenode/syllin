@@ -1,12 +1,12 @@
 import boto3, os, json
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from flask_security import roles_accepted, login_required
 from flask_security.core import current_user
 from syllin import user, song, album
 from syllin.security import user_datastore
 from syllin.app import application
 from syllin.db_model import db
-from syllin.models import Song, User, Role, Album
+from syllin.models import Song, User, Role, Album, SongLink
 from syllin.templated import templated
 from syllin.forms.forms import SongForm, AlbumForm
 
@@ -93,6 +93,16 @@ def albumUpload():
 
     return dict(form=form)
 
+
+@application.route('/refer/<key>')
+def refer(key):
+    song_link = SongLink.query.filter(SongLink.key==key).first_or_404()
+    song_id = song_link.song.id
+    return redirect(url_for('song.view', song_id=song_id))
+
+@application.route('/debug/links')
+def links():
+    return " ".join([link.key for link in SongLink.query.all()])
 
 ## API
 

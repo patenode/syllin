@@ -63,7 +63,7 @@ class Purchase(db.Model):
     buyer_id = db.Column(db.Integer(), db.ForeignKey('user.id'), nullable=False)
     buyer = db.relationship("User", foreign_keys=[buyer_id], backref=db.backref('purchases', lazy='dynamic'))
 
-    seller_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    seller_id = db.Column(db.Integer(), db.ForeignKey('user.id'), nullable=False)
     seller = db.relationship("User", foreign_keys=[seller_id], backref=db.backref('sells', lazy='dynamic'))
 
     song_id = db.Column(db.Integer(), db.ForeignKey('song.id'), nullable=False)
@@ -105,3 +105,14 @@ class Recommendation(db.Model):
 
     def __repr__(self):
         return "Recommend {}".format(self.song.title)
+
+class SongLink(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    song_id = db.Column(db.Integer(), db.ForeignKey('song.id'), nullable=False)
+    song = db.relationship("Song")
+     
+    referrer_id = db.Column(db.Integer(), db.ForeignKey('user.id'), nullable=False)
+    referrer = db.relationship("User")
+
+    key = db.Column(db.Text(), index=True, unique=True, nullable=False) # this is the random link that we use for referral

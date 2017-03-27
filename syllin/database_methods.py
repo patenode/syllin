@@ -1,5 +1,6 @@
 from syllin.db_model import db
-from syllin.models import User, Role, Purchase, Song, Album
+from syllin.models import User, Role, Purchase, Song, Album, SongLink
+from syllin.random_string import get_random_string
 
 def buySong(song_id, buyer_id, seller_id):
     song = Song.query.get(song_id)
@@ -8,7 +9,11 @@ def buySong(song_id, buyer_id, seller_id):
 
     purchase = Purchase(buyer=buyer, seller=seller, song=song)
 
+    # The buyer gets a song link
+    song_link = SongLink(song=song, referrer=buyer, key=get_random_string(40))
+
     db.session.add(purchase)
+    db.session.add(song_link)
     db.session.commit()
 
 
@@ -40,4 +45,7 @@ def setupDatabaseForDebug():
         addSongs(["Frumpy r", "!!Curmudgeon", "Fuck ^^^^^^^me briskly"], Album.query.get(1))
         buySong(1, 2, 1)
 
+    if not SongLink.query.first():
+        song_link = SongLink(song_id=4, referrer_id=2, key="idk")
+        db.session.add(song_link)
     db.session.commit()
