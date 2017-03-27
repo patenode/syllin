@@ -34,8 +34,11 @@
                 </div>
                 <div class="col-6 px-0 d-flex flex-column">
                     <div class="h6 mt-auto mb-0 text-truncate">{{ song.title }}</div>
-                    <div class="small mb-auto text-truncate">{{ song.album.title }}
-                        | {{ song.album.artist.email }}</div>
+                    <div class="small mb-auto text-truncate">
+                      {% if song.album %}
+                      {{ song.album.title }} | {{ song.album.artist.email }}
+                      {% endif %}
+                    </div>
                 </div>
                 <div class="col-2">
                     <span class="align-middle">1:23</span>

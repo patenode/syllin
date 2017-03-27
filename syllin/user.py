@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 from flask import redirect
 from flask import url_for
+from flask_security.core import current_user
 
 from syllin.models import User, Song
 
@@ -13,20 +14,6 @@ views = Blueprint(name='user',
 def get_user(id):
     return User.query.filter_by(id=id).first_or_404()
 
-
-# TODO: Instead of using a mock data value, get actual ID from user session (login)
-class CU:
-    def __init__(self, future_id):
-        self._id = future_id
-        self.usr_obj = None
-
-    def __getattr__(self, item):
-        if not self.usr_obj:
-            self.usr_obj = get_user(self._id)
-        return getattr(self.usr_obj, item)
-
-
-current_user = CU(4)
 
 
 @views.route('/')
