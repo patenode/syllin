@@ -7,6 +7,8 @@
 {% block content %}
 	{% if song.album  %}
     	{{ macros.title(song.title, song.album.title ~ " - " ~ song.album.artist.email) }}
+        <img src="{{ song.album.cover_art }}">
+        <p></p>
     {% else %}
     	{{ macros.title(song.title, song.artist.email) }}
     {% endif %}
