@@ -11,6 +11,14 @@
     	{{ macros.title(song.title, song.artist.email) }}
     {% endif %}
     <!-- TODO: Song View Page -->
-    This is where song views belong.
-    {{ lipsum(2) }}
+
+    {% if user_owns_song(current_user, song) %}
+    	You own this song
+    {% else %}
+    	<form method="POST">
+	    	{{ form.purchase.label }}
+	    	{{ form.purchase() }}
+	    	{{ form.hidden_tag() }} 
+	    </form>
+    {% endif %}
 {% endblock %}

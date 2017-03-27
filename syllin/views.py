@@ -96,6 +96,12 @@ def albumUpload():
 
 ## API
 
+# @application.route('/buy_song', methods=["POST"])
+# @login_required
+# def buy_song_api():
+#     song_id = request.args.get('song_id')
+
+
 @application.route('/sign_s3/')
 @login_required
 def sign_s3():
@@ -132,7 +138,7 @@ def submit_form():
 
     song = Song(title=song_name, resource_uri=song_url, artist=current_user)
     db.session.add(song)
-    db.session.commit();
+    db.session.commit()
     # update_account(username, full_name, avatar_url) ##TODO -- Print the url, just to prove that it's coming through (in html)
 
     return dict(fileUrl=song_url)

@@ -16,3 +16,8 @@ class AlbumForm(FlaskForm):
 	title = StringField('Album Title', [Required("An album needs a title")])
 	s3_data_url = HiddenField() 
 	submit = SubmitField("Add Album")
+
+class SongPurchaseForm(FlaskForm):
+	song_id = HiddenField()
+	user_id = HiddenField()
+	purchase = SubmitField("Purchase")
