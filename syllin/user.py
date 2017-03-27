@@ -3,7 +3,7 @@ from flask import redirect
 from flask import url_for
 from flask_security.core import current_user
 
-from syllin.models import User, Song
+from syllin.models import Song, User, Role, Album, Purchase
 
 views = Blueprint(name='user',
                   import_name=__name__,
@@ -48,10 +48,11 @@ def get_songs():
 
 @views.route('/<user_id>/library')
 def library(user_id):
-    return render_template('user/library.html',
+  purchased_songs = [p.song for p in Purchase.query.join(User, Purchase.buyer_id == User.id).all()]
+  return render_template('user/library.html',
                            user=get_user(user_id),
                            sorting_options=get_sorting_options(),
-                           songs=get_songs())
+                           songs=purchased_songs)
 
 
 @views.route('/stats')
