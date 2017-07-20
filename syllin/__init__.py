@@ -19,7 +19,7 @@ application.config.update(dict(
     MAIL_USE_TLS = False,
     MAIL_USE_SSL = True,
     MAIL_USERNAME = 'syllin.mail',
-    MAIL_PASSWORD = 'Syllinpassword',
+    MAIL_PASSWORD = 'pleasechangethis',
 
     # administrator list
     ADMINS = ['my_username@gmail.com']

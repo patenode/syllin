@@ -2,6 +2,8 @@ from syllin.db_model import db
 from syllin.models import User, Role, Purchase, Song, Album, SongLink
 from syllin.random_string import get_random_string
 from flask_security.core import current_user
+from flask_security.utils import encrypt_password
+from syllin.security import user_datastore, security
 
 def buySong(song_id, buyer_id, seller_id):
     song = Song.query.get(song_id)
@@ -47,7 +49,7 @@ def setupDatabaseForDebug():
         buySong(1, 2, 1)
 
     if not SongLink.query.first():
-        song_link = SongLink(song_id=4, referrer_id=2, key="idk")
+        song_link = SongLink(song_id=1, referrer_id=2, key="idk")
         db.session.add(song_link)
     db.session.commit()
 

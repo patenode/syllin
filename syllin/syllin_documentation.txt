@@ -1,0 +1,53 @@
+Syllin technical description:
+
+Major aspects of design:
+	- Database & Data Model
+	- UI 
+	- Security
+	- User Scenarios
+
+Database & Data Model:
+	
+	Database:
+		- Postgre SQL server, either running locally, or deployed on aws. Config the app's connection to the db in [app.py]. We use postgre because it's a common, time tested option, but mostly because it is what SQLAlchemy supports.
+
+		- SQLAlchemy is the python library that we have to use to talk to the database. It is also what flask-security needs to handle encryption for us. (see Security section) 
+
+
+	Data Model:
+		- Described in [models.py] 
+
+		- SQLAlchemy allows us to make classes that will be translated for us into SQL tables, and it will handle lookups into the table for us through queries.
+
+		Tables:
+			Role
+				- This is an access role. A user can have 0 or more roles. They determine what users can do and view. We typically use this with decorators on view methods
+
+			User
+				- A user in the system
+				- Has a list of roles, as well as a password, encrypted by flask-security
+
+			Album:
+				- cover_art is a url for looking up into s3
+				- has list of songs
+
+			Song:
+				- Doesn't have to be in an album(?) I think? I dont remember. TODO update this
+
+			Purchase:
+				- Represents 1 user (buyer) purchasing song (song) from another user (seller)
+				- Must be unique for set of (buyer,song,seller) 
+
+			Recommendation:
+				-Exactly the same as purchase, but represents a recommendation from a user to another.
+				- This is made when a user follows a song link
+
+			SongLink:
+				- This is the link you get when you buy a song. When a user clicks on it, a recommendation is made.
+				- the key is the link
+
+UI:
+	Views:
+		[views.py]
+			- This file handles all routing of requests to views. It attaches blueprints, and serves views outside of those
+			
