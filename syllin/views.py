@@ -96,6 +96,7 @@ def albumUpload():
 
 @application.route('/refer/<key>')
 def refer(key):
+    domain_url = request.url_root
     song_link = SongLink.query.filter(SongLink.key==key).first_or_404()
     song_id = song_link.song.id
     return redirect(url_for('song.view', song_id=song_id))

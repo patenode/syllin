@@ -14,8 +14,10 @@
     {% endif %}
     <!-- TODO: Song View Page -->
 
-    {% if user_owns_song(current_user, song) %}
+    {% if user_owns_song(current_user, song=song) %}
     	You own this song
+        <p></p>
+        Link : {{domain_url}}{{url_for('refer', key=link)}}
     {% else %}
     	<form method="POST">
 	    	{{ form.purchase.label }}

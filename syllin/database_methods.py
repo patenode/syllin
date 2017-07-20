@@ -1,6 +1,7 @@
 from syllin.db_model import db
 from syllin.models import User, Role, Purchase, Song, Album, SongLink
 from syllin.random_string import get_random_string
+from flask_security.core import current_user
 
 def buySong(song_id, buyer_id, seller_id):
     song = Song.query.get(song_id)
@@ -49,3 +50,14 @@ def setupDatabaseForDebug():
         song_link = SongLink(song_id=4, referrer_id=2, key="idk")
         db.session.add(song_link)
     db.session.commit()
+
+
+def user_owns_song(user, song=None, song_id=None):
+    if song_id == None:
+        song_id = song.id
+    if not current_user.is_authenticated:
+        return False
+    if Purchase.query.filter(Purchase.buyer_id==user.id).filter(Purchase.song_id==song_id).first():
+        return True
+    else:
+        return False
