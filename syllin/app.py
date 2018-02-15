@@ -20,7 +20,7 @@ else:
     DATABASES = {
         'default': {
             "ENGINE": "POSTGRES!!!!",
-            'NAME': 'i1',
+            'NAME': 'i3',
             'USER': 'postgres',
             'PASSWORD': 'password',
             'HOST': 'localhost',
@@ -40,3 +40,4 @@ application.config['SECURITY_CONFIRM_ERROR_VIEW'] = "/login"
 application.config['SECURITY_UNAUTHORIZED_VIEW'] = '/login' 
 application.config['SECURITY_POST_REGISTER_VIEW'] = '/' 
 application.config['SECURITY_REGISTER_USER_TEMPLATE'] = 'register-user.html'
+application.config['SECURITY_SEND_REGISTER_EMAIL'] = False
